@@ -27,7 +27,6 @@ var lampCount = 3;
 
 
 xbox.on('a:press', function (key) {
-	console.log(currentLamp);
 	api.setLightState(currentLamp, lightState.create().on().rgb(0, 255, 0))
 	   .then(displayResult)
        .fail(displayError)
@@ -36,16 +35,16 @@ xbox.on('a:press', function (key) {
 
 xbox.on('b:press', function (key) {
 	api.setLightState(currentLamp, lightState.create().on().rgb(255, 0, 0))
-    .then(displayResult)
-    .fail(displayError)
-    .done();
+       .then(displayResult)
+       .fail(displayError)
+       .done();
 });
 
 xbox.on('x:press', function (key) {
 	api.setLightState(currentLamp, lightState.create().on().rgb(0, 0, 255))
-    .then(displayResult)
-    .fail(displayError)
-    .done();
+       .then(displayResult)
+       .fail(displayError)
+       .done();
 });
 
 xbox.on('y:press', function (key) {
@@ -69,7 +68,6 @@ xbox.on('rightshoulder:press', function (key) {
 });
 
 xbox.on('xboxbutton:press', function (key) {
-	
 	var state = lightState.create().off();
 		
 	api.setLightState(1, state)
@@ -86,8 +84,4 @@ xbox.on('xboxbutton:press', function (key) {
 	   .then(displayResult)
 	   .fail(displayError)
 	   .done();
-
-	
-	
-	
 });
