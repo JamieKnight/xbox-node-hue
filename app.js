@@ -92,7 +92,7 @@ xbox.on('start:press', function (key) {
 });
 
 //presets
-xbox.on('dup:press', function (key) {
+xbox.on('dright:press', function (key) {
     for (i = 1; i < (lampCount + 1); i++) {
         api.setLightState(i, lightState.create().on().white(250, 100))
            .then(displayResult)
@@ -101,9 +101,27 @@ xbox.on('dup:press', function (key) {
     }
 });
 
+xbox.on('dup:press', function (key) {
+    for (i = 1; i < (lampCount + 1); i++) {
+        api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(100))
+           .then(displayResult)
+           .fail(displayError)
+           .done();
+    }
+});
+
+xbox.on('dleft:press', function (key) {
+    for (i = 1; i < (lampCount + 1); i++) {
+        api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(50))
+           .then(displayResult)
+           .fail(displayError)
+           .done();
+    }
+});
+
 xbox.on('ddown:press', function (key) {
     for (i = 1; i < (lampCount + 1); i++) {
-        api.setLightState(i, lightState.create().on().white(250, 10))
+        api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(1))
            .then(displayResult)
            .fail(displayError)
            .done();
