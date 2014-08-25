@@ -1,10 +1,20 @@
-var hue = require("node-hue-api"),
-    HueApi = hue.HueApi,
-    lightState = hue.lightState;
-
+//Dependencies
+var hue = require("node-hue-api");
 var XboxController = require('xbox-controller');
-var xbox = new XboxController;
 
+//config
+var host = "10.0.1.20",
+    username = "newdeveloper",
+    lampCount = 3;
+
+//setup
+var HueApi = hue.HueApi,
+    lightState = hue.lightState,
+    xbox = new XboxController;
+    api = new HueApi(host, username),
+    currentLamp = 1;
+
+//helpers
 var displayResult = function(result) {
     console.log(result);
 };
@@ -13,33 +23,31 @@ var displayError = function(err) {
     console.error(err);
 };
 
-var host = "10.0.1.20",
-    username = "newdeveloper",
-    api = new HueApi(host, username);
-
-var lightswitch = false;
-var currentLamp = 1;
-var lampCount = 3;
-
-xbox.on('a:press', function (key) {
-    api.setLightState(currentLamp, lightState.create().on().rgb(0, 255, 0))
+var setCurrentLampRGB = function(r, g, b){
+    api.setLightState(currentLamp, lightState.create().on().rgb(r, g, b))
        .then(displayResult)
        .fail(displayError)
        .done();
+}
+
+var alertCurrent = function() {
+    api.setLightState(currentLamp, lightState.create().on().alert())
+       .then(displayResult)
+       .fail(displayError)
+       .done();
+}
+
+//do stuff
+xbox.on('b:press', function (key) {
+   setCurrentLampRGB(255, 0, 0);
 });
 
-xbox.on('b:press', function (key) {
-    api.setLightState(currentLamp, lightState.create().on().rgb(255, 0, 0))
-       .then(displayResult)
-       .fail(displayError)
-       .done();
+xbox.on('a:press', function (key) {
+   setCurrentLampRGB(0, 255, 0);
 });
 
 xbox.on('x:press', function (key) {
-    api.setLightState(currentLamp, lightState.create().on().rgb(0, 0, 255))
-       .then(displayResult)
-       .fail(displayError)
-       .done();
+   setCurrentLampRGB(0, 0, 255);
 });
 
 xbox.on('y:press', function (key) {
@@ -49,34 +57,57 @@ xbox.on('y:press', function (key) {
        .done();
 });
 
+//loop through lamps for selection.
 xbox.on('leftshoulder:press', function (key) {
-    console.log("is: (l) " + currentLamp);
-    currentLamp = (currentLamp == 1) ? lampCount : currentLamp--;
-    console.log("is now: " + currentLamp);
+    currentLamp = (currentLamp == 1) ? lampCount : --currentLamp;
+    alertCurrent();
 });
 
 xbox.on('rightshoulder:press', function (key) {
-    console.log("is (r): " + currentLamp);
-    console.log("count" + lampCount);
-    currentLamp = (currentLamp < lampCount) ? currentLamp + 1 : 1;
-    console.log("is now: " + currentLamp);
+    currentLamp = (currentLamp == lampCount) ? 1 : ++currentLamp;
+    alertCurrent();
 });
 
+xbox.on('back:press', function (key) {
+    alertCurrent();
+});
+
+//all off, all on.
 xbox.on('xboxbutton:press', function (key) {
-    var state = lightState.create().off();
-
-    api.setLightState(1, state)
-       .then(displayResult)
-       .fail(displayError)
-       .done();
-
-    api.setLightState(2, state)
-       .then(displayResult)
-       .fail(displayError)
-       .done();
-
-    api.setLightState(3, state)
-       .then(displayResult)
-       .fail(displayError)
-       .done();
+    for (i = 1; i < (lampCount + 1); i++) {
+        api.setLightState(i, lightState.create().off())
+           .then(displayResult)
+           .fail(displayError)
+           .done();
+    }
 });
+
+xbox.on('start:press', function (key) {
+    for (i = 1; i < (lampCount + 1); i++) {
+        api.setLightState(i, lightState.create().on())
+           .then(displayResult)
+           .fail(displayError)
+           .done();
+    }
+});
+
+//presets
+xbox.on('dup:press', function (key) {
+    for (i = 1; i < (lampCount + 1); i++) {
+        api.setLightState(i, lightState.create().on().white(250, 100))
+           .then(displayResult)
+           .fail(displayError)
+           .done();
+    }
+});
+
+xbox.on('ddown:press', function (key) {
+    for (i = 1; i < (lampCount + 1); i++) {
+        api.setLightState(i, lightState.create().on().white(250, 10))
+           .then(displayResult)
+           .fail(displayError)
+           .done();
+    }
+});
+
+
