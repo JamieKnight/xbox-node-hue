@@ -1,6 +1,6 @@
 var Lamps     = require('./lamps');
 var Server    = require('./server');
-var joystick  = require('joystick');
+var joystick = new (require('joystick'))(0, 3500, 350);
 
 var lamps     = new Lamps();
 var server    = new Server();
