@@ -13,15 +13,17 @@ var type = {
 }
 
 //action map
+/*
 var actions = {
   'a:press': function() { lamps.setCurrentLampRGB(0,255,0); },
   'y:press': function() { lamps.setCurrentLampOff(); }
 }
+*/
 
 joystick.on('button', function(event){
 
     console.log(server);
-     console.log(server.test);
+    console.log(server.test);
 
     if (!event.init 
          && type[event.type] 
@@ -29,8 +31,14 @@ joystick.on('button', function(event){
          && type[event.type][event.number][event.value]
     ) {      
       var eventName = type[event.type][event.number][event.value];
-      if (typeof actions[eventName] !== 'undefined' ) {
-          actions[eventName]() 
+      if (typeof server.test[eventName] !== 'undefined' ) {
+          var color = server.test[eventName];
+         
+          if (color == 'green'){
+            lamps.setCurrentLampRGB(0,255,0);
+          } else {
+            lamps.setCurrentLampRGB(0, 0, 255);
+          }
       }
     }
 });

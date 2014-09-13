@@ -11,7 +11,6 @@ var Server = function(){
   var state = this.state;
 
   http.createServer(function(req,res) {
-     
     //process the form
     if (req.method == 'POST') {
       var fullBody = '';
@@ -24,13 +23,12 @@ var Server = function(){
       // parse the received body data
       req.on('end', function() {  
         var decodedBody = querystring.parse(fullBody);
+        state[decodedBody.button] = decodedBody.color;
         
         res.writeHead(200, "OK", {'Content-Type': 'text/html'});
         res.write(form)
         res.write(util.inspect(decodedBody));
         res.end();
-        
-        state[decodedBody.button] = decodedBody.color;
       });
     
     } else {  
