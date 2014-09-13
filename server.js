@@ -6,7 +6,7 @@ var fs = require('fs');
 
 var lamps = require('./lamps');
 
-console.log(lamps);
+lamps.setCurrentLampRGB(0, 0, 255);
 
 //dependencies for the controller and hue
 /*
