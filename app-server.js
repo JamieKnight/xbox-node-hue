@@ -16,6 +16,8 @@ var type = {
 
 joystick.on('button', function(event){
 
+  console.log(event);
+
   if (!event.init 
        && type[event.type] 
        && type[event.type][event.number] 

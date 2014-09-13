@@ -1,8 +1,18 @@
 var hue = require("node-hue-api");
 
-var lamps = function(){
-    this.host = "10.0.1.20";
-    this.username = "newdeveloper";
+/**
+ * Creates and interface for setting up lamps individually and in bulk.
+ * 
+ * @param host {String} IP Adress for hue bridge
+ * @param  username {String} Username for bridge
+ * @example
+ * new Lamps('192.168.1.1','bob')
+ * 
+ * @returns {Function} Lamps Object
+ */
+var lamps = function(host, username){
+    this.host = host || "10.0.1.20";
+    this.username = username || "newdeveloper";
     this.lampCount = 3;
     this.currentLamp = 1;
     this.HueApi = hue.HueApi;
@@ -26,29 +36,18 @@ lamps.prototype.alertCurrent = function() {
        .done();
 }
 
+// Current Lamp Management
 lamps.prototype.setCurrentLampRGB = function(color){
 
   switch (color) {
     case "green":
-      var r = 0,
-          g = 255,
-          b = 0;
-      break;
+      var r = 0, g = 255, b = 0;
     case "red":
-      var r = 255,
-          g = 0,
-          b = 0;
-      break;
+      var r = 255, g = 0, b = 0;
     case "blue":
-      var r = 0,
-          g = 0,
-          b = 255;
-      break;
+      var r = 0, g = 0, b = 255;
     case "white":
-      var r = 255,
-          g = 255,
-          b = 255;
-      break;
+      var r = 255, g = 255, b = 255;
   }
   
   this.api.setLightState(this.currentLamp, this.lightState.create().on().rgb(r, g, b))
@@ -71,19 +70,42 @@ lamps.prototype.setCurrentLampWhite = function() {
     .done();
 }
 
-lamps.prototype.selectPreviousLamp = function () {
-    this.currentLamp = (this.currentLamp == 1) ? this.lampCount : --this.currentLamp;
-    this.alertCurrent();
-}
 
-//Right Shoulder
+// Selection
 lamps.prototype.select = function(option) {
   if (option == 'next'){
     this.currentLamp = (this.currentLamp == this.lampCount) ? 1 : ++this.currentLamp;
-    this.alertCurrent();
   } else if (option == 'prev') {
     this.currentLamp = (this.currentLamp == 1) ? this.lampCount : --this.currentLamp;
-    this.alertCurrent();
+  }
+  this.alertCurrent();
+}
+
+lamps.prototype.currentSelected = function(option) {
+  this.alertCurrent();
+}
+
+// Group Controls
+/*
+lamps.prototype.setAllLampsRGB(color) {
+  for (i = 1; i < (lampCount + 1); i++) {
+    this.setCurrentLampRGB(color);   
+  }
+}
+
+lamps.prototype.setAllLampsWhite() {
+  for (i = 1; i < (lampCount + 1); i++) {
+    this.lamps.prototype.setCurrentLampWhite();   
+  }
+}
+*/
+
+lamps.prototype.setAllLampsOff() {
+  for (i = 1; i < (this.lampCount + 1); i++) {
+    api.setLightState(i, this.lightState.create().off())
+       .then(this.displayResult)
+       .fail(this.displayError)
+       .done();
   }
 }
 
