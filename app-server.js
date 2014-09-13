@@ -19,7 +19,7 @@ var type = {
 
 
 //button names to actions.
-var server.state = {
+server.state = {
   'a:press': {type: 'color', value: 'green' },
   'b:press': {type: 'color', value: 'red' },
   'y:press': {type: 'color', value: 'off' },
