@@ -31,37 +31,48 @@ server.state = {
   'start:press': {type: 'group', value: 'on' },
 }
 
-var joystickAction = function(event){
-
+var eventIsMapped = function(event){
   if (!event.init 
        && type[event.type] 
        && type[event.type][event.number] 
        && type[event.type][event.number][event.value]
-  ) {      
+  ) {
     var eventName = type[event.type][event.number][event.value];
-    if (typeof server.state[eventName] !== 'undefined' ) {
-      
-      var action = server.state[eventName];
-    
-      if (action.type == 'color') {
-        if (action.value == 'off' || action.value == 'on'){
+    return server.state[eventName];
+  } else {
+    return false;
+  }
+}
+
+var joystickAction = function(event){
+
+  action = this.eventIsMapped(event);
+
+  if (action) {        
+    if (action.type == 'color') {
+      switch (action.value) {
+        case "off" || "on":
           lamps.setCurrentLampState(action.value);
-        } else if (action.value == 'midwhite') {
-          lamps.setCurrentLampWhite(action.value);
-        } else {
+          break;
+        case "white":
+          lamps.setCurrentLampWhite();
+          break;
+        default:
           lamps.setCurrentLampRGB(action.value);
-        }
-      } 
-      
-      if (action.type == 'selection'){
-        lamps.select(action.value);
+          break;
       }
-      
-      if (action.type == 'group') {
-        if (action.value == 'off' || action.value == 'on') {
+    } 
+    
+    if (action.type == 'selection'){
+      lamps.select(action.value);
+    }
+    
+    if (action.type == 'group') {
+       switch (action.value) {
+        case "off" || "on":
           lamps.setAllLampsState(action.value);
-        }
-      }
+          break;
+       }
     }
   }
 }
