@@ -14,14 +14,12 @@ var type = {
     8: { 1: "xbox:press", 0: "xbox:up" },
     6: { 1: "back:press", 0: "back:up" },
     7: { 1: "start:press", 0: "start:up" },
-  }//,
-  /*
-axis: {
-    6: { 32767: }
+  },
+  axis: {
+    7: { 32767: "ddown:press", -32767: "dup:press" }
+    6: { 32767: "dright:press", -32767: "dleft:press" }
   }
-*/
 }
-
 
 //button names to actions.
 server.state = {
@@ -34,6 +32,8 @@ server.state = {
   'back:press': {type: 'selection', value: 'current' },
   'xbox:press': {type: 'group', value: 'off' },
   'start:press': {type: 'group', value: 'on' },
+  'ddown:press': {type: 'preset', value: 'lowwhite' },
+  'dup:press': {type: 'preset', value: 'lowwhite' }
 }
 
 var eventIsMapped = function(event){
@@ -82,6 +82,11 @@ var joystickAction = function(event) {
           lamps.setAllLampsState(action.value);
        }
     }
+    
+    if (action.type == 'preset'){
+      console.log(action.value);
+    }
+    
   } else {
     console.log("unmapped");
   }
