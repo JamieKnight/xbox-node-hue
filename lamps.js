@@ -121,9 +121,8 @@ lamps.prototype.setAllLampsState = function(state) {
 }
 
 //Presets
-lamps.prototype.presets = [];
 
-lamps.prototype.presets['lowwhite'] = function(){ 
+lamps.prototype.lowwhite = function(){ 
   console.log('low white used');
   console.log(this.lampCount);
     for (var i = 1; i < (this.lampCount + 1); i++) {
