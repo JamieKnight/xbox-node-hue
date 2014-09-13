@@ -11,7 +11,8 @@ var HueApi = hue.HueApi,
     lightState = hue.lightState,
     api = new HueApi(host, username),
     currentLamp = 1,
-    buttons = [];
+    buttons = [],
+    axis = [];
 
 //helpers
 var displayResult = function(result) {
