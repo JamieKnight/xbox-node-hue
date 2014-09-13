@@ -86,9 +86,7 @@ var joystickAction = function(event) {
     }
     
     if (action.type == 'preset'){
-      console.log(action.value);
-      var preset = lamps[action.value];
-      console.log(preset);
+      lamps[action.value](action.value);
     }
     
   } else {
