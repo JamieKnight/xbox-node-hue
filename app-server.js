@@ -1,16 +1,41 @@
-//dependencies for the server
-var Lamps = require('./lamps');
-var Server = require('./server');
+var Lamps     = require('./lamps');
+var Server    = require('./server');
+var joystick  = require('joystick');
 
-var lamps = new Lamps();
-var server = new Server();
+var lamps     = new Lamps();
+var server    = new Server();
 
-lamps.setCurrentLampRGB(0, 0, 255);
+//key map
+var type = {
+  button: {
+    0: { 1: "a:press", 0: "a:up" },
+    1: { 1: "b:press", 0: "b:up" },
+    2: { 1: "x:press", 0: "x:up" },
+    3: { 1: "y:press", 0: "y:up" }
+  }
+}
 
-//form HTML
+//action map
+var actions = {
+  'a:press': function() { this.setCurrentLampRGB(0,255,0); }
+}
+
+joystick.on('button', function(event){
+    if (!event.init 
+         && type[event.type] 
+         && type[event.type][event.number] 
+         && type[event.type][event.number][event.value]
+    ) {      
+      var eventName = type[event.type][event.number][event.value];
+      if (typeof actions[eventName] !== 'undefined' ) {
+          actions[eventName]() 
+      }
+    }
+});
+
+
+
 /*
-var form = fs.readFileSync('form.html');
-
 // Buttons, maps and colors.
 var buttons = [],
     colors  = [];
