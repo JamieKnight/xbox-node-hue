@@ -76,7 +76,7 @@ var actions = {
 
 var joystickAction = function(event){
 
-    if (!event.init && type[event.type] && typeof type[event.type][event.number] && typeof type[event.type][event.number][event.value]) {
+    if (!event.init && type[event.type] && type[event.type][event.number] && type[event.type][event.number][event.value]) {
       
       var action = type[event.type][event.number][event.value];
       
