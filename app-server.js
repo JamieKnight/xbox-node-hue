@@ -22,8 +22,6 @@ var actions = {
 
 joystick.on('button', function(event){
 
-    console.log(server);
-    console.log(server.test);
 
     if (!event.init 
          && type[event.type] 
@@ -31,8 +29,8 @@ joystick.on('button', function(event){
          && type[event.type][event.number][event.value]
     ) {      
       var eventName = type[event.type][event.number][event.value];
-      if (typeof server.test[eventName] !== 'undefined' ) {
-          var color = server.test[eventName];
+      if (typeof server.state[eventName] !== 'undefined' ) {
+          var color = server.state[eventName];
          
           if (color == 'green'){
             lamps.setCurrentLampRGB(0,255,0);
