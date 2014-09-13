@@ -40,42 +40,48 @@ var alertCurrent = function() {
 }
 
 //do stuff
+
+//B Press
 actions[1] = function () {
    setCurrentLampRGB(255, 0, 0);
 }
 
+//A Press
 actions[0] = function () {
    setCurrentLampRGB(0, 255, 0);
 }
 
-var xpress = function () {
+//X Press
+actions[2] = function () {
    setCurrentLampRGB(0, 0, 255);
 }
 
-var ypress = function() {
+//Y Press
+actions[3] = function() {
    api.setLightState(currentLamp, lightState.create().off())
        .then(displayResult)
        .fail(displayError)
        .done();
 }
 
-
-//loop through lamps for selection.
-var leftshoulderpress = function () {
+//Right Shoulder
+actions[5] = function () {
     currentLamp = (currentLamp == 1) ? lampCount : --currentLamp;
     alertCurrent();
 }
 
-var rightshoulderpress = function() {
+//Right Shoulder
+actions[4] = function() {
     currentLamp = (currentLamp == lampCount) ? 1 : ++currentLamp;
     alertCurrent();
 }
-
-var backpress = function () {
+//Back
+actions[6] = function () {
     alertCurrent();
 }
 
-var guidepress = function() {
+// Xbox
+actions[6] = function() {
   for (i = 1; i < (lampCount + 1); i++) {
     api.setLightState(i, lightState.create().off())
        .then(displayResult)
@@ -83,8 +89,6 @@ var guidepress = function() {
        .done();
   }
 }
-
-
 
 //maps actions to functions.
 var joystick = new (require('joystick'))(0, 3500, 350);
@@ -95,40 +99,3 @@ joystick.on('button', function(event){
     action();
   }
 });
-        
-/*    var output = last;
-    
-    if (output.indexOf("A:1") > -1) {
-      apress();
-    }
-    
-    if (output.indexOf("B:1") > -1) {
-      bpress();
-    }
-    
-    if (output.indexOf("Y:1") > -1) {
-      ypress();
-    }
-    
-    if (output.indexOf("X:1") > -1) {
-      xpress();
-    }
-    
-    if (output.indexOf("RB:1") > -1) {
-      rightshoulderpress();
-    }
-    
-    if (output.indexOf("LB:1") > -1) {
-      leftshoulderpress();
-    }
-
-    if (output.indexOf("back:1") > -1) {
-      backpress();
-    }
-    
-    if (output.indexOf("guide:1") > -1) {
-      guidepress();
-    }
-}, 500);
-
-*/
