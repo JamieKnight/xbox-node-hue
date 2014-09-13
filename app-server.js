@@ -8,8 +8,8 @@ var type = {
     0: { 1: "a:press", 0: "a:up" },
     1: { 1: "b:press", 0: "b:up" },
     2: { 1: "x:press", 0: "x:up" },
-    3: { 1: "y:press", 0: "y:up" }
-    5: { 1: "rb:press", 0: "rb:up" }
+    3: { 1: "y:press", 0: "y:up" },
+    5: { 1: "rb:press", 0: "rb:up" },
     4: { 1: "lb:press", 0: "lb:up" }
   }
 }
@@ -34,6 +34,9 @@ joystick.on('button', function(event){
         } else {
           lamps.setCurrentLampRGB(action.value);
         }
+      } else {
+        console.log(action.type);
+        
       }
     }
   }
