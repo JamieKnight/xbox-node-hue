@@ -112,7 +112,7 @@ lamps.prototype.setAllLampsState = function(state) {
 
   var lamp = (state == "off") ? this.lightState.create().off() : this.lightState.create().on() ; 
 
-  for (i = 1; i < (this.lampCount + 1); i++) {
+  for (var i = 1; i < (this.lampCount + 1); i++) {
     this.api.setLightState(i, lamp)
        .then(this.displayResult)
        .fail(this.displayError)
@@ -125,9 +125,7 @@ lamps.prototype.presets = [];
 
 lamps.prototype.presets['lowwhite'] = function(){ 
   console.log('low white used');
-    for (i = 1; i < (this.lampCount + 1); i++) {
-        
-      console.log('loop');
+    for (var i = 1; i < (this.lampCount + 1); i++) {
   
       this.api.setLightState(i, this.lightState.create().on().xy(0.4595,0.4105).brightness(1))
         .then(this.displayResult)
