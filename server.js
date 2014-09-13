@@ -70,8 +70,8 @@ var type = {
 }
 
 var actions = {
-  'a:press': buttons[0],
-  'x:press': buttons[0]
+  'a:press': 'test',
+  'x:press': 'more tests'
 }
 
 var joystickAction = function(event){
