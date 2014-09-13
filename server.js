@@ -89,8 +89,8 @@ var setCurrentLampRGB = function(r, g, b){
 
 //mapping
 buttons[0] = function() {
-    console.log(color[0]);
-    if (color[0] == "green") {
+    console.log(colors[0]);
+    if (colors[0] == "green") {
         setCurrentLampRGB(0, 255, 0);
     } else {
         setCurrentLampRGB(0, 0, 255);
