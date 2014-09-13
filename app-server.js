@@ -17,7 +17,7 @@ var type = {
 
 //action map
 var actions = {
-  'a:press': function() { this.setCurrentLampRGB(0,255,0); }
+  'a:press': function() { lamps.setCurrentLampRGB(0,255,0); }
 }
 
 joystick.on('button', function(event){
