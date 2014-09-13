@@ -100,7 +100,7 @@ buttons[7] = function () {
 }
 
 buttons[10] = function () {
-    api.setLightState(4, lightState.create().on().brightness(50))
+    api.setLightState(4, lightState.create().on().brightness(20))
        .then(displayResult)
        .fail(displayError)
        .done();
