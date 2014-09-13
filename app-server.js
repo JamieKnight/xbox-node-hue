@@ -24,16 +24,15 @@ joystick.on('button', function(event){
       
       var action = server.state[eventName];
     
-      console.log(action);
-    
-    
-      if (action == 'off'){
-        lamps.setCurrentLampOff();
-      } else if (action == 'white') {
-        lamps.setCurrentLampWhite(action);
-      } else {
-        lamps.setCurrentLampRGB(action);
-      } 
+      if (action.type == 'color') {
+        if (action.color == 'off'){
+          lamps.setCurrentLampOff();
+        } else if (action.color == 'white') {
+          lamps.setCurrentLampWhite(action.color );
+        } else {
+          lamps.setCurrentLampRGB(action.color );
+        }
+      }
     }
   }
 });
