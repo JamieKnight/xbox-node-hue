@@ -9,8 +9,10 @@ var Server = function(){
   http.createServer(this.serverAction).listen('80');
 }
 
-Server.prototype.serverAction = function (req,res) {
-    
+Server.prototype.serverAction = function(req,res) {
+  
+  console.log(this);
+  
   var state = this.state;
   
   console.log(this.state);
