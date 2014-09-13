@@ -2,6 +2,7 @@ var http = require('http');
 var querystring = require('querystring');
 var util = require('util');
 var fs = require('fs');
+var form = fs.readFileSync('form.html');
 
 var server = function(){
   
