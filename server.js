@@ -83,7 +83,7 @@ var joystickAction = function(event){
       console.log(action);
       
       if (actions[action]){
-        actions[action](event);
+        actions[action]();
       } else {
         console.log("not action found");
       }
@@ -111,6 +111,7 @@ var setCurrentLampRGB = function(r, g, b){
 
 //mapping
 buttons[0] = function() {
+  console.log('map completed');
     if (colors[0] == "green") {
         setCurrentLampRGB(0, 255, 0);
     } else {
