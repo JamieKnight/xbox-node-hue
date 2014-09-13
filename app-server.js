@@ -24,6 +24,9 @@ joystick.on('button', function(event){
       
       var action = server.state[eventName];
     
+      console.log(action);
+    
+    
       if (action == 'off'){
         lamps.setCurrentLampOff();
       } else if (action == 'white') {
