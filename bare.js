@@ -146,6 +146,7 @@ joystick.on('button', function(event){
 });
 
 joystick.on('axis', function(event){
+  console.log(event);
   if (!event.init && event.value !=  0 && (action = actions[event.number])) {
     action(event);
   }
