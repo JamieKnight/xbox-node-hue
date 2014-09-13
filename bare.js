@@ -100,7 +100,7 @@ actions[7] = function () {
 
 //PRESETS
 actions[6] = function (event) {
-    if (event.value = 32767) {
+    if (event.value == 32767) {
       for (i = 1; i < (lampCount + 1); i++) {
         api.setLightState(i, lightState.create().on().white(250, 100))
            .then(displayResult)
@@ -118,16 +118,16 @@ actions[6] = function (event) {
 }
 
 actions[7] = function (event) {
-  if (event.value = 32767) {
-    for (i = 1; i < (lampCount + 1); i++) {
-        api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(100))
+  if (event.value == 32767) {
+     for (i = 1; i < (lampCount + 1); i++) {
+        api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(1))
            .then(displayResult)
            .fail(displayError)
            .done();
     }
   } else {
     for (i = 1; i < (lampCount + 1); i++) {
-        api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(50))
+        api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(100))
            .then(displayResult)
            .fail(displayError)
            .done();
