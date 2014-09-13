@@ -83,7 +83,7 @@ var joystickAction = function(event){
       if (actions[action]){
         actions[action](event);
       } else {
-        console.log("not mapped");
+        console.log("not action found");
       }
       
     } else {
