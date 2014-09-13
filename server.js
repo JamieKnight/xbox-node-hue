@@ -30,8 +30,6 @@ http.createServer( function(req,res) {
       res.write(util.inspect(decodedBody));
       res.write('</body><html>');
       res.end();
-      
-      res.end();
     });
   
   } else {
@@ -40,7 +38,7 @@ http.createServer( function(req,res) {
     res.writeHead(200, "OK", {'Content-Type': 'text/html'});
     res.write(form);
     res.write('</body><html>');
-    
+    res.end();
   }
 
 }).listen('8124');
