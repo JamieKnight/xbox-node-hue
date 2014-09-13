@@ -46,9 +46,7 @@ var eventIsMapped = function(event){
 
 var joystickAction = function(event) {
 
-  var action = eventIsMapped(event);
-
-  if (action) {        
+  if (var action = eventIsMapped(event)) {
     if (action.type == 'color') {
       switch (action.value) {
         case "off":
@@ -66,7 +64,7 @@ var joystickAction = function(event) {
       }
     } 
     
-    if (action.type == 'selection'){
+    if (action.type == 'selection') {
       lamps.select(action.value);
     }
     
@@ -75,7 +73,10 @@ var joystickAction = function(event) {
           lamps.setAllLampsState(action.value);
        }
     }
+  } else {
+    console.log("unmapped");
   }
 }
 
 joystick.on('button', joystickAction);
+joystick.on('axis', joystickAction);
