@@ -82,7 +82,7 @@ var joystickAction = function(event){
       
       console.log(eventName);
       
-      console.log(actions[action]);
+      console.log(actions[eventName]);
       
       /*
 if (actions[action]){
