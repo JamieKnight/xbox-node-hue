@@ -10,7 +10,8 @@ var host = "10.0.1.20",
 var HueApi = hue.HueApi,
     lightState = hue.lightState,
     api = new HueApi(host, username),
-    currentLamp = 1;
+    currentLamp = 1,
+    actions = [];
 
 //helpers
 var displayResult = function(result) {
@@ -20,6 +21,7 @@ var displayResult = function(result) {
 var displayError = function(err) {
     //console.error(err);
 };
+
 
 var setCurrentLampRGB = function(r, g, b){
     api.setLightState(currentLamp, lightState.create().on().rgb(r, g, b))
@@ -38,7 +40,7 @@ var alertCurrent = function() {
 }
 
 //do stuff
-var bpress = function () {
+actions[1] = function () {
    setCurrentLampRGB(255, 0, 0);
 }
 
@@ -82,11 +84,17 @@ var guidepress = function() {
   }
 }
 
-var last = '';
 
+
+//maps actions to functions.
 var joystick = new (require('joystick'))(0, 3500, 350);
-joystick.on('button', console.log);
-joystick.on('axis', console.log);
+
+joystick.on('button', function(event){  
+  if (!event.init && event.value == 1) {
+    action[event.number]();
+    console.log(number)
+  }
+});
         
 /*    var output = last;
     
