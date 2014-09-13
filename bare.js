@@ -1,5 +1,5 @@
 var process = require('child_process');
-var cmd = process.spawn('xboxdrv');
+//var cmd = process.spawn('xboxdrv');
 var hue = require("node-hue-api");
 
 var host = "10.0.1.20",
@@ -84,16 +84,11 @@ var guidepress = function() {
 
 var last = '';
 
-cmd.stdout.on('data', function(output){
-    //convert buffer to string
-    last = output +'';
-    console.log("controller button pressed");    
-});
-
-
-//poll every 500ms
-setInterval(function(){         
-    var output = last;
+var joystick = new (require('joystick'))(0, 3500, 350);
+joystick.on('button', console.log);
+joystick.on('axis', console.log);
+        
+/*    var output = last;
     
     if (output.indexOf("A:1") > -1) {
       apress();
@@ -128,11 +123,4 @@ setInterval(function(){
     }
 }, 500);
 
-cmd.on('close', function(){
-    console.log('Finished');
-});
-
-//Error handling
-cmd.stderr.on('data', function(err){
-    console.log(err);
-});
+*/
