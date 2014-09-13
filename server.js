@@ -65,7 +65,7 @@ var type = {
     number: {
       0: {
         value: {
-          1: "apress" 
+          1: "apress"
         }
       }
     }
@@ -75,7 +75,7 @@ var type = {
 
 var joystickAction = function(event){
 
-    console.log(type[event.type]);
+    console.log(type[event.type][event.number][event.value]);
 
    /*
  if (!event.init && event.value == 1 && (action = buttons[event.number])) {
