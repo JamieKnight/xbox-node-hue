@@ -35,8 +35,6 @@ var alertCurrent = function() {
        .then(displayResult)
        .fail(displayError)
        .done();
-       
-       console.log( Date.now() + ": " +  currentLamp);
 }
 
 //do stuff
@@ -90,6 +88,17 @@ actions[6] = function() {
   }
 }
 
+// Start
+actions[7] = function () {
+    for (i = 1; i < (lampCount + 1); i++) {
+        api.setLightState(i, lightState.create().on())
+           .then(displayResult)
+           .fail(displayError)
+           .done();
+    }
+}
+
+
 //maps actions to functions.
 var joystick = new (require('joystick'))(0, 3500, 350);
 
@@ -98,4 +107,8 @@ joystick.on('button', function(event){
   if (!event.init && event.value == 1 && (action = actions[event.number])) {
     action();
   }
+});
+
+joystick.on('axis', function(event){
+  console.log(event);
 });
