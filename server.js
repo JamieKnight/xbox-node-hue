@@ -76,27 +76,15 @@ var actions = {
 
 var joystickAction = function(event){
 
-    if (!event.init && type[event.type] && type[event.type][event.number] && type[event.type][event.number][event.value]) {
-      
+    if (!event.init && type[event.type] && type[event.type][event.number] && type[event.type][event.number][event.value]) {      
       var eventName = type[event.type][event.number][event.value];
       
-      console.log(eventName);
-      
-      console.log(actions[eventName]);
-      
-      /*
-if (actions[action]){
-        var action = actions[action];
-        action();
-      } else {
-        console.log("not action found");
+      if (typeof actions[eventName] !== 'undefined' ) {
+          actions[eventName]() 
       }
-*/
-      
     } else {
       console.log("not mapped");
     }
-
 }
 
 // Helpers
