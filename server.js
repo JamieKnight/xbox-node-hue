@@ -2,6 +2,7 @@
 var http = require('http');
 var querystring = require('querystring');
 var util = require('util');
+var fs = require('fs');
 
 //dependencies for the controller and hue
 var hue = require("node-hue-api");
