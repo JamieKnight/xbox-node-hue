@@ -78,12 +78,13 @@ var joystickAction = function(event){
 
     if (!event.init && type[event.type] && type[event.type][event.number] && type[event.type][event.number][event.value]) {
       
-      var action = type[event.type][event.number][event.value];
+      var eventName = type[event.type][event.number][event.value];
       
-      console.log(action);
+      console.log(eventName);
       
       if (actions[action]){
-        actions[action]();
+        var action = actions[action];
+        action();
       } else {
         console.log("not action found");
       }
