@@ -25,6 +25,8 @@ var form = fs.readFileSync('form.html');
 // Buttons, maps and colors.
 var buttons = [],
     colors  = [];
+    
+color[0] = 'green';
 
 //setup & joystic actions.
 var serverAction = function (req,res) {
@@ -48,7 +50,7 @@ var serverAction = function (req,res) {
       res.write(form)
       res.write(util.inspect(decodedBody));
       
-      color = decodedBody.color;
+      color[0] = decodedBody.color0;
       
       res.write('</body><html>');
       res.end();
@@ -87,12 +89,12 @@ var setCurrentLampRGB = function(r, g, b){
 
 //mapping
 buttons[0] = function() {
-  console.log(color);
-  if (color == "green") {
-   setCurrentLampRGB(0, 255, 0);
-  } else {
-   setCurrentLampRGB(0, 0, 255);
-  }
+    console.log(color[0]);
+    if (color[0] == "green") {
+        setCurrentLampRGB(0, 255, 0);
+    } else {
+        setCurrentLampRGB(0, 0, 255);
+    }
 }
 
 //bind server
