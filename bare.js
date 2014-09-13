@@ -71,6 +71,14 @@ var backpress = function () {
     alertCurrent();
 }
 
+var guidepress = function() {
+  for (i = 1; i < (lampCount + 1); i++) {
+    api.setLightState(i, lightState.create().off())
+       .then(displayResult)
+       .fail(displayError)
+       .done();
+  }
+}
 
 
 cmd.stdout.on('data', function(output){
@@ -93,6 +101,23 @@ cmd.stdout.on('data', function(output){
     if (output.indexOf("X:1") > -1) {
       xpress();
     }
+    
+    if (output.indexOf("RB:1") > -1) {
+      rightshoulderpress();
+    }
+    
+    if (output.indexOf("LB:1") > -1) {
+      leftshoulderpress();
+    }
+
+    if (output.indexOf("back:1") > -1) {
+      backpress();
+    }
+    
+    if (output.indexOf("guide:1") > -1) {
+      guidepress();
+    }
+    
 });
 
 cmd.on('close', function(){
