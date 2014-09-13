@@ -14,11 +14,11 @@ var HueApi = hue.HueApi,
 
 //helpers
 var displayResult = function(result) {
-    console.log(result);
+    //console.log(result);
 };
 
 var displayError = function(err) {
-    console.error(err);
+    //console.error(err);
 };
 
 var setCurrentLampRGB = function(r, g, b){
@@ -85,13 +85,15 @@ var guidepress = function() {
 var last = '';
 
 cmd.stdout.on('data', function(output){
-     
     //convert buffer to string
-    output = output+'';
-    
-    if (output !== last) {
-      last = output;
-            
+    last = last +'';    
+});
+
+
+//poll every 500ms
+setInterval(function(){         
+      var output = last;
+      
       if (output.indexOf("A:1") > -1) {
         apress();
       }
@@ -108,7 +110,7 @@ cmd.stdout.on('data', function(output){
         xpress();
       }
       
-      if (output.indexOf("RB:1") > -1) {
+      if (matches =  &&  > -1) {
         rightshoulderpress();
       }
       
@@ -123,11 +125,8 @@ cmd.stdout.on('data', function(output){
       if (output.indexOf("guide:1") > -1) {
         guidepress();
       }
-    } else {
-      console.log("input ignored"); 
     }
-    
-});
+}, 500);
 
 cmd.on('close', function(){
     console.log('Finished');
