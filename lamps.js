@@ -50,6 +50,10 @@ lamps.prototype.setCurrentLampRGB = function(color){
       var r = 255, g = 255, b = 255;
   }
   
+  console.log(r);
+  console.log(g);
+  console.log(b);
+  
   this.api.setLightState(this.currentLamp, this.lightState.create().on().rgb(r, g, b))
     .then(this.displayResult)
     .fail(this.displayError)
