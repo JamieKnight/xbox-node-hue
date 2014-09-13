@@ -96,6 +96,8 @@ lamps.prototype.currentSelected = function(option) {
 // Group Controls
 lamps.prototype.setAllLampsState = function(state) {
 
+  console.log(this.lampCount);
+
   var lamp = (state == "off") ? this.lightState.create().off() : this.lightState.create().on() ; 
 
   for (var i = 1; i < (this.lampCount + 1); i++) {
