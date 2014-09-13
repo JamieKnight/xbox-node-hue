@@ -9,9 +9,9 @@
   <form method="post">
     <fieldset>
       <input type="hidden" name="button" value="a:press" />
-       Pressing B will set the selected light color too 
+       Pressing A will set the selected light color too 
       <select name="color">
-        <option value="green">Green</option>
+        <option value="green" selected>Green</option>
         <option value="blue">Blue</option>
         <option value="red">Red</option>
         <option value="white">White</option>
@@ -27,9 +27,38 @@
       <select name="color">
         <option value="green">Green</option>
         <option value="blue">Blue</option>
+        <option value="red" selected>Red</option>
+        <option value="white">White</option>
+        <option value="off">Off</option>
+      </select>
+      <input type="submit" value="save">
+    </fieldset>
+  </form>
+  <form method="post">
+    <fieldset>
+      <input type="hidden" name="button" value="b:press" />
+      Pressing X will set the selected light color too 
+      <select name="color">
+        <option value="green">Green</option>
+        <option value="blue" selected>Blue</option>
         <option value="red">Red</option>
         <option value="white">White</option>
         <option value="off">Off</option>
+      </select>
+      <input type="submit" value="save">
+    </fieldset>
+  </form>
+  
+  <form method="post">
+    <fieldset>
+      <input type="hidden" name="button" value="b:press" />
+      Pressing Y will set the selected light color too 
+      <select name="color">
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+        <option value="red">Red</option>
+        <option value="white">White</option>
+        <option value="off" selected>Off</option>
       </select>
       <input type="submit" value="save">
     </fieldset>
