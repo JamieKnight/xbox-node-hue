@@ -105,14 +105,22 @@ lamps.prototype.setAllLampsState = function(state) {
   }
 }
 
-lamps.prototype.lowwhite = function(state) {
+lamps.prototype.highwhite = function(state) {
   for (var i = 1; i < (this.lampCount + 1); i++) {
     this.api.setLightState(i, this.lightState.create().on().xy(0.4595,0.4105).brightness(100))
        .then(this.displayResult)
        .fail(this.displayError)
        .done();
   }
+}
 
+lamps.prototype.lowwhite = function(state) {
+  for (var i = 1; i < (this.lampCount + 1); i++) {
+    this.api.setLightState(i, this.lightState.create().on().xy(0.4595,0.4105).brightness(1))
+       .then(this.displayResult)
+       .fail(this.displayError)
+       .done();
+  }
 }
 
 //Presets
