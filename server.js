@@ -6,7 +6,12 @@ var form        = fs.readFileSync('form.html');
 
 var Server = function(){
 
-  this.state = ['mooo'];
+  this.state = {
+    'a:press': 'green',
+    'b:press': 'red',
+    'y:press': 'off',
+    'x:press': 'blue',
+  };
 
   var state = this.state;
 

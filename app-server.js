@@ -29,7 +29,14 @@ joystick.on('button', function(event){
   ) {      
     var eventName = type[event.type][event.number][event.value];
     if (typeof server.state[eventName] !== 'undefined' ) {
-        lamps.setCurrentLampRGB(server.state[eventName]);
+      
+      var action = server.state[eventName];
+    
+      if (action == 'off'){
+        lamps.setCurrentLampOff();
+      } else {
+        lamps.setCurrentLampRGB(action);
+      } 
     }
   }
 });
