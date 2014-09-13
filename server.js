@@ -40,19 +40,15 @@ var serverAction = function (req,res) {
       fullBody += chunk.toString();
     });
     
-     // parse the received body data
-    req.on('end', function() {
-        
+    // parse the received body data
+    req.on('end', function() {  
       var decodedBody = querystring.parse(fullBody);
       
-      // request ended -> do something with the data
       res.writeHead(200, "OK", {'Content-Type': 'text/html'});
       res.write(form)
       res.write(util.inspect(decodedBody));
       
       colors[0] = decodedBody.color0;
-      
-      res.write('</body><html>');
       res.end();
     });
   
@@ -60,15 +56,32 @@ var serverAction = function (req,res) {
     //show the form
     res.writeHead(200, "OK", {'Content-Type': 'text/html'});
     res.write(form);
-    res.write('</body><html>');
     res.end();
   }
 }
 
+var type = {
+  button: {
+    number: {
+      0: {
+        value: {
+          1: "apress" 
+        }
+      }
+    }
+  }
+}
+
+
 var joystickAction = function(event){
-    if (!event.init && event.value == 1 && (action = buttons[event.number])) {
+
+    console.log(type[event.type]);
+
+   /*
+ if (!event.init && event.value == 1 && (action = buttons[event.number])) {
       action(event);
     }
+*/
 }
 
 // Helpers
@@ -89,7 +102,6 @@ var setCurrentLampRGB = function(r, g, b){
 
 //mapping
 buttons[0] = function() {
-    console.log(colors[0]);
     if (colors[0] == "green") {
         setCurrentLampRGB(0, 255, 0);
     } else {
