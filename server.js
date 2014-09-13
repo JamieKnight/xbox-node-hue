@@ -5,8 +5,8 @@ var util = require('util');
 var fs = require('fs');
 
 var lamps = require('./lamps');
-
-lamps.setCurrentLampRGB(0, 0, 255);
+var lamp = new Lamps();
+lamp.setCurrentLampRGB(0, 0, 255);
 
 //dependencies for the controller and hue
 /*
