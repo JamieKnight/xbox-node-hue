@@ -80,42 +80,47 @@ var guidepress = function() {
   }
 }
 
+var last = '';
 
 cmd.stdout.on('data', function(output){
-    
+     
     //convert buffer to string
     output = output+'';
     
-    if (output.indexOf("A:1") > -1) {
-      apress();
-    }
-    
-    if (output.indexOf("B:1") > -1) {
-      bpress();
-    }
-    
-    if (output.indexOf("Y:1") > -1) {
-      ypress();
-    }
-    
-    if (output.indexOf("X:1") > -1) {
-      xpress();
-    }
-    
-    if (output.indexOf("RB:1") > -1) {
-      rightshoulderpress();
-    }
-    
-    if (output.indexOf("LB:1") > -1) {
-      leftshoulderpress();
-    }
-
-    if (output.indexOf("back:1") > -1) {
-      backpress();
-    }
-    
-    if (output.indexOf("guide:1") > -1) {
-      guidepress();
+    if (output !== last) {
+      last = output;
+            
+      if (output.indexOf("A:1") > -1) {
+        apress();
+      }
+      
+      if (output.indexOf("B:1") > -1) {
+        bpress();
+      }
+      
+      if (output.indexOf("Y:1") > -1) {
+        ypress();
+      }
+      
+      if (output.indexOf("X:1") > -1) {
+        xpress();
+      }
+      
+      if (output.indexOf("RB:1") > -1) {
+        rightshoulderpress();
+      }
+      
+      if (output.indexOf("LB:1") > -1) {
+        leftshoulderpress();
+      }
+  
+      if (output.indexOf("back:1") > -1) {
+        backpress();
+      }
+      
+      if (output.indexOf("guide:1") > -1) {
+        guidepress();
+      }
     }
     
 });
