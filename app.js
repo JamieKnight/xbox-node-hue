@@ -1,131 +1,93 @@
-//Dependencies
-var hue = require("node-hue-api");
-var XboxController = require('xbox-controller');
+var lamps       = new (require('./modules/lamps'));
+var server      = new (require('./modules/server'));
+var joystick    = new (require('joystick'))(0, 3500, 350);
 
-//config
-var host = "10.0.1.20",
-    username = "newdeveloper",
-    lampCount = 3;
-
-//setup
-var HueApi = hue.HueApi,
-    lightState = hue.lightState,
-    xbox = new XboxController;
-    api = new HueApi(host, username),
-    currentLamp = 1;
-
-//helpers
-var displayResult = function(result) {
-    console.log(result);
-};
-
-var displayError = function(err) {
-    console.error(err);
-};
-
-var setCurrentLampRGB = function(r, g, b){
-    api.setLightState(currentLamp, lightState.create().on().rgb(r, g, b))
-       .then(displayResult)
-       .fail(displayError)
-       .done();
+// map joystick events to buttons names
+var type = {
+  button: {
+    0: { 1: "a:press", 0: "a:up" },
+    1: { 1: "b:press", 0: "b:up" },
+    2: { 1: "x:press", 0: "x:up" },
+    3: { 1: "y:press", 0: "y:up" },
+    5: { 1: "rb:press", 0: "rb:up" },
+    4: { 1: "lb:press", 0: "lb:up" },
+    8: { 1: "xbox:press", 0: "xbox:up" },
+    6: { 1: "back:press", 0: "back:up" },
+    7: { 1: "start:press", 0: "start:up" }
+  },
+  axis: {
+    7: { 32767: "ddown:press", '-32767': "dup:press" },
+    6: { 32767: "dright:press", '-32767': "dleft:press" }
+  }
 }
 
-var alertCurrent = function() {
-    api.setLightState(currentLamp, lightState.create().on().alert())
-       .then(displayResult)
-       .fail(displayError)
-       .done();
+//button names to actions.
+server.state = {
+  'a:press': {type: 'color', value: 'green' },
+  'b:press': {type: 'color', value: 'red' },
+  'y:press': {type: 'color', value: 'off' },
+  'x:press': {type: 'color', value: 'blue' },
+  'rb:press': {type: 'selection', value: 'next' },
+  'lb:press': {type: 'selection', value: 'prev' },
+  'back:press': {type: 'selection', value: 'current' },
+  'xbox:press': {type: 'group', value: 'off' },
+  'start:press': {type: 'group', value: 'on' },
+  'ddown:press': {type: 'preset', value: 'lowwhite' },
+  'dup:press': {type: 'preset', value: 'highwhite' },
+  'dleft:press': {type: 'preset', value: 'highcoldwhite' },
+  'dright:press': {type: 'preset', value: 'midwarmwhite' }
 }
 
-//do stuff
-xbox.on('b:press', function (key) {
-   setCurrentLampRGB(255, 0, 0);
-});
+var eventIsMapped = function(event){
+  if (!event.init 
+       && type[event.type] 
+       && type[event.type][event.number] 
+       && type[event.type][event.number][event.value]
+  ) {
+    var eventName = type[event.type][event.number][event.value];
+    return server.state[eventName];
+  } else {
+    return false;
+  }
+}
 
-xbox.on('a:press', function (key) {
-   setCurrentLampRGB(0, 255, 0);
-});
+var joystickAction = function(event) {
 
-xbox.on('x:press', function (key) {
-   setCurrentLampRGB(0, 0, 255);
-});
-
-xbox.on('y:press', function (key) {
-    api.setLightState(currentLamp, lightState.create().off())
-       .then(displayResult)
-       .fail(displayError)
-       .done();
-});
-
-//loop through lamps for selection.
-xbox.on('leftshoulder:press', function (key) {
-    currentLamp = (currentLamp == 1) ? lampCount : --currentLamp;
-    alertCurrent();
-});
-
-xbox.on('rightshoulder:press', function (key) {
-    currentLamp = (currentLamp == lampCount) ? 1 : ++currentLamp;
-    alertCurrent();
-});
-
-xbox.on('back:press', function (key) {
-    alertCurrent();
-});
-
-//all off, all on.
-xbox.on('xboxbutton:press', function (key) {
-    for (i = 1; i < (lampCount + 1); i++) {
-        api.setLightState(i, lightState.create().off())
-           .then(displayResult)
-           .fail(displayError)
-           .done();
+  var action = eventIsMapped(event)
+  
+  if (action) {
+    if (action.type == 'color') {
+      switch (action.value) {
+        case "off":
+          lamps.setCurrentLampState(action.value);
+          break;
+        case "on":
+          lamps.setCurrentLampState(action.value);
+          break;
+        case "white":
+          lamps.setCurrentLampWhite();
+          break;
+        default:
+          lamps.setCurrentLampRGB(action.value);
+          break;
+      }
+    } 
+    
+    if (action.type == 'selection') {
+      lamps.select(action.value);
     }
-});
-
-xbox.on('start:press', function (key) {
-    for (i = 1; i < (lampCount + 1); i++) {
-        api.setLightState(i, lightState.create().on())
-           .then(displayResult)
-           .fail(displayError)
-           .done();
+    
+    if (action.type == 'group') {
+       if (action.value == "on" || action.value == "off") {
+          lamps.setAllLampsState(action.value);
+       }
     }
-});
-
-//presets
-xbox.on('dright:press', function (key) {
-    for (i = 1; i < (lampCount + 1); i++) {
-        api.setLightState(i, lightState.create().on().white(250, 100))
-           .then(displayResult)
-           .fail(displayError)
-           .done();
+    
+    if (action.type == 'preset' && lamps[action.value]){
+      lamps[action.value](action.value);
     }
-});
+  }
+}
 
-xbox.on('dup:press', function (key) {
-    for (i = 1; i < (lampCount + 1); i++) {
-        api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(100))
-           .then(displayResult)
-           .fail(displayError)
-           .done();
-    }
-});
-
-xbox.on('dleft:press', function (key) {
-    for (i = 1; i < (lampCount + 1); i++) {
-        api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(50))
-           .then(displayResult)
-           .fail(displayError)
-           .done();
-    }
-});
-
-xbox.on('ddown:press', function (key) {
-    for (i = 1; i < (lampCount + 1); i++) {
-        api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(1))
-           .then(displayResult)
-           .fail(displayError)
-           .done();
-    }
-});
-
-
+joystick.on('button', joystickAction);
+joystick.on('axis', joystickAction);

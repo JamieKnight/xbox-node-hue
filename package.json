@@ -1,0 +1,10 @@
+{
+  "name": "xbox-node-hue",
+  "version": "0.0.1",
+  "description": "Server and controller for controller hue lights with xbox",
+  "dependencies": {
+    "forms": "^0.9.6",
+    "joystick": "^0.1.1",
+    "node-hue-api": "^0.2.3"
+  }
+}
