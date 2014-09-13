@@ -19,7 +19,7 @@ http.createServer( function(req,res) {
 
    res.writeHead(200, {'Content-Type':'text/html'});
    res.write('<html><head><title>Test</title></head>');
-   res.write('<body><form>Pressing A will set the color <select name="color"><option value="green">Green</option><option value="blue">Blue</option></select><input type="submit" value="save"></form></body><html>');
+   res.write('<body><form method="post">Pressing A will set the color <select name="color"><option value="green">Green</option><option value="blue">Blue</option></select><input type="submit" value="save"></form></body><html>');
    res.end();
 
 }).listen('8124');
