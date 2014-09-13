@@ -46,7 +46,7 @@ var eventIsMapped = function(event){
 
 var joystickAction = function(event){
 
-  action = this.eventIsMapped(event);
+  var action = eventIsMapped(event);
 
   if (action) {        
     if (action.type == 'color') {
