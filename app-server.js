@@ -33,7 +33,9 @@ server.state = {
   'xbox:press': {type: 'group', value: 'off' },
   'start:press': {type: 'group', value: 'on' },
   'ddown:press': {type: 'preset', value: 'lowwhite' },
-  'dup:press': {type: 'preset', value: 'lowwhite' }
+  'dup:press': {type: 'preset', value: 'highwhite' },
+  'dleft:press': {type: 'preset', value: 'highcoldwhite' },
+  'dright': {type: 'preset', value: 'midwarmwhite' }
 }
 
 var eventIsMapped = function(event){
@@ -84,7 +86,8 @@ var joystickAction = function(event) {
     }
     
     if (action.type == 'preset'){
-      console.log(action.value);
+      var preset = lamps.presets[action.value];
+      preset();
     }
     
   } else {

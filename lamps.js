@@ -120,4 +120,14 @@ lamps.prototype.setAllLampsState = function(state) {
   }
 }
 
+//Presets
+lamps.prototype.presets = [];
+
+lamps.prototype.presets['lowwhite'] = function(){ 
+   this.api.setLightState(i, this.lightState.create().on().xy(0.4595,0.4105).brightness(1))
+     .then(this.displayResult)
+     .fail(this.displayError)
+     .done();
+}
+
 module.exports = exports = lamps;
