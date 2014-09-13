@@ -34,7 +34,7 @@ var alertCurrent = function() {
        .fail(displayError)
        .done();
        
-       console.log(currentLamp);
+       console.log( Date.now() + ": " currentLamp);
 }
 
 //do stuff
