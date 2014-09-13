@@ -63,16 +63,13 @@ var serverAction = function (req,res) {
 var type = {
   button: {
     number: {
-      0: {
-        value: {
-          1: "a:press",
-          0: "a:up"
-        }
-      }
+      0: { value: { 1: "a:press", 0: "a:up" }},
+      1: { value: { 1: "b:press", 0: "b:up" }},
+      2: { value: { 1: "x:press", 0: "x:up" }},
+      3: { value: { 1: "y:press", 0: "y:up" }}
     }
   }
 }
-
 
 var joystickAction = function(event){
 
