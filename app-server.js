@@ -35,7 +35,7 @@ server.state = {
   'ddown:press': {type: 'preset', value: 'lowwhite' },
   'dup:press': {type: 'preset', value: 'highwhite' },
   'dleft:press': {type: 'preset', value: 'highcoldwhite' },
-  'dright': {type: 'preset', value: 'midwarmwhite' }
+  'dright:press': {type: 'preset', value: 'midwarmwhite' }
 }
 
 var eventIsMapped = function(event){
@@ -52,8 +52,6 @@ var eventIsMapped = function(event){
 }
 
 var joystickAction = function(event) {
-
-  console.log(event);
 
   var action = eventIsMapped(event)
   
@@ -88,9 +86,6 @@ var joystickAction = function(event) {
     if (action.type == 'preset'){
       lamps[action.value](action.value);
     }
-    
-  } else {
-    console.log("unmapped");
   }
 }
 
