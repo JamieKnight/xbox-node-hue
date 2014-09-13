@@ -28,6 +28,32 @@ var buttons = [],
     
 colors[0] = 'green';
 
+// Helpers
+var displayResult = function(result) {
+    console.log(result);
+};
+
+var displayError = function(err) {
+    console.error(err);
+};
+
+var setCurrentLampRGB = function(r, g, b){
+    api.setLightState(currentLamp, lightState.create().on().rgb(r, g, b))
+       .then(displayResult)
+       .fail(displayError)
+       .done();
+}
+
+//mapping
+buttons[0] = function() {
+  console.log('map completed');
+    if (colors[0] == "green") {
+        setCurrentLampRGB(0, 255, 0);
+    } else {
+        setCurrentLampRGB(0, 0, 255);
+    }
+}
+
 //setup & joystic actions.
 var serverAction = function (req,res) {
   
@@ -70,46 +96,20 @@ var type = {
 }
 
 var actions = {
-  'a:press': 'test',
-  'x:press': 'more tests'
+  'a:press': buttons[0]
 }
 
 var joystickAction = function(event){
 
-    if (!event.init && type[event.type] && type[event.type][event.number] && type[event.type][event.number][event.value]) {      
+    if (!event.init 
+         && type[event.type] 
+         && type[event.type][event.number] 
+         && type[event.type][event.number][event.value]
+    ) {      
       var eventName = type[event.type][event.number][event.value];
-      
       if (typeof actions[eventName] !== 'undefined' ) {
           actions[eventName]() 
       }
-    } else {
-      console.log("not mapped");
-    }
-}
-
-// Helpers
-var displayResult = function(result) {
-    console.log(result);
-};
-
-var displayError = function(err) {
-    console.error(err);
-};
-
-var setCurrentLampRGB = function(r, g, b){
-    api.setLightState(currentLamp, lightState.create().on().rgb(r, g, b))
-       .then(displayResult)
-       .fail(displayError)
-       .done();
-}
-
-//mapping
-buttons[0] = function() {
-  console.log('map completed');
-    if (colors[0] == "green") {
-        setCurrentLampRGB(0, 255, 0);
-    } else {
-        setCurrentLampRGB(0, 0, 255);
     }
 }
 
