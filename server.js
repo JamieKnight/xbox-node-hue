@@ -6,17 +6,7 @@ var form        = fs.readFileSync('form.html');
 
 var Server = function(){
 
-  this.state = {
-    'a:press': {type: 'color', value: 'green' },
-    'b:press': {type: 'color', value: 'red' },
-    'y:press': {type: 'color', value: 'off' },
-    'x:press': {type: 'color', value: 'blue' },
-    'rb:press': {type: 'selection', value: 'next' },
-    'lb:press': {type: 'selection', value: 'prev' },
-    'back:press': {type: 'selection', value: 'current' },
-    'xbox:press': {type: 'group', value: 'off' },
-    'start:press': {type: 'group', value: 'on' },
-  };
+  this.state = {};
 
   var state = this.state;
 

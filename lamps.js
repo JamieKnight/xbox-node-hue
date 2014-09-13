@@ -49,9 +49,6 @@ lamps.prototype.setCurrentLampRGB = function(color){
     case "blue":
       var r = 0, g = 0, b = 255;
       break;
-    case "white":
-      var r = 255, g = 255, b = 255;
-      break;
   }
   
   this.api.setLightState(this.currentLamp, this.lightState.create().on().rgb(r, g, b))
@@ -70,8 +67,12 @@ lamps.prototype.setCurrentLampState = function(state) {
     .done();
 }
 
-lamps.prototype.setCurrentLampWhite = function() {
-  this.api.setLightState(this.currentLamp, this.lightState.create().on().white(250, 100))
+lamps.prototype.setCurrentLampWhite = function(temp, brightness) {
+
+  var tmp   = temp || 250;
+  var brns  = brightness || 50;
+
+  this.api.setLightState(this.currentLamp, this.lightState.create().on().white(tmp, brns))
     .then(this.displayResult)
     .fail(this.displayError)
     .done();

@@ -2,7 +2,7 @@ var lamps       = new (require('./lamps'));
 var server      = new (require('./server'));
 var joystick    = new (require('joystick'))(0, 3500, 350);
 
-//key map
+// map joystick events to buttons names
 var type = {
   button: {
     0: { 1: "a:press", 0: "a:up" },
@@ -17,9 +17,21 @@ var type = {
   }
 }
 
-joystick.on('button', function(event){
 
-  console.log(event);
+//button names to actions.
+var server.state = {
+  'a:press': {type: 'color', value: 'green' },
+  'b:press': {type: 'color', value: 'red' },
+  'y:press': {type: 'color', value: 'off' },
+  'x:press': {type: 'color', value: 'blue' },
+  'rb:press': {type: 'selection', value: 'next' },
+  'lb:press': {type: 'selection', value: 'prev' },
+  'back:press': {type: 'selection', value: 'current' },
+  'xbox:press': {type: 'group', value: 'off' },
+  'start:press': {type: 'group', value: 'on' },
+}
+
+var joystickAction = function(event){
 
   if (!event.init 
        && type[event.type] 
@@ -34,7 +46,7 @@ joystick.on('button', function(event){
       if (action.type == 'color') {
         if (action.value == 'off' || action.value == 'on'){
           lamps.setCurrentLampState(action.value);
-        } else if (action.value == 'white') {
+        } else if (action.value == 'midwhite') {
           lamps.setCurrentLampWhite(action.value);
         } else {
           lamps.setCurrentLampRGB(action.value);
@@ -52,4 +64,6 @@ joystick.on('button', function(event){
       }
     }
   }
-});
+}
+
+joystick.on('button', joystickAction);
