@@ -5,13 +5,13 @@ var fs = require('fs');
 var form = fs.readFileSync('form.html');
 
 var Server = function(){
-  
   this.state = [];
-  
   http.createServer(this.serverAction).listen('80');
 }
 
 Server.prototype.serverAction = function (req,res) {
+    
+  var state = this.state;
     
   //process the form
   if (req.method == 'POST') {
@@ -31,7 +31,7 @@ Server.prototype.serverAction = function (req,res) {
       res.write(util.inspect(decodedBody));
       res.end();
       
-      this.state[0] = decodedBody.color0;
+      state[0] = decodedBody.color;
     });
   
   } else {  
