@@ -44,7 +44,7 @@ actions[1] = function () {
    setCurrentLampRGB(255, 0, 0);
 }
 
-var apress = function () {
+actions[0] = function () {
    setCurrentLampRGB(0, 255, 0);
 }
 
@@ -89,12 +89,9 @@ var guidepress = function() {
 //maps actions to functions.
 var joystick = new (require('joystick'))(0, 3500, 350);
 
-joystick.on('button', function(event){  
-  if (!event.init && event.value == 1) {
-  
-    console.log(event.number);
-    
-    var action = actions[event.number];
+joystick.on('button', function(event){
+  console.log(event);
+  if (!event.init && event.value == 1 && (action = actions[event.number)) {
     action();
   }
 });
