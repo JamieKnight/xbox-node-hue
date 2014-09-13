@@ -21,7 +21,7 @@ var actions = {
 }
 
 joystick.on('button', function(event){
-    console.log(server);
+    console.log(server.state);
     if (!event.init 
          && type[event.type] 
          && type[event.type][event.number] 
