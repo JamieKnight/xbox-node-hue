@@ -6,7 +6,7 @@ var form        = fs.readFileSync('form.html');
 
 var Server = function(){
 
-  this.test = "mooo";
+  this.state = ['mooo'];
 
 
   http.createServer(function(req,res) {
@@ -29,7 +29,7 @@ var Server = function(){
         res.write(util.inspect(decodedBody));
         res.end();
         
-        //state[decodedBody.button] = decodedBody.color;
+        this.state[decodedBody.button] = decodedBody.color;
       });
     
     } else {  
