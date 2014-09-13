@@ -42,12 +42,16 @@ lamps.prototype.setCurrentLampRGB = function(color){
   switch (color) {
     case "green":
       var r = 0, g = 255, b = 0;
+      break;
     case "red":
       var r = 255, g = 0, b = 0;
+      break;
     case "blue":
       var r = 0, g = 0, b = 255;
+      break;
     case "white":
       var r = 255, g = 255, b = 255;
+      break;
   }
   
   console.log(r);
