@@ -102,7 +102,7 @@ lamps.prototype.setAllLampsWhite() {
 
 lamps.prototype.setAllLampsOff = function() {
   for (i = 1; i < (this.lampCount + 1); i++) {
-    api.setLightState(i, this.lightState.create().off())
+    this.api.setLightState(i, this.lightState.create().off())
        .then(this.displayResult)
        .fail(this.displayError)
        .done();

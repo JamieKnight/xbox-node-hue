@@ -43,6 +43,12 @@ joystick.on('button', function(event){
       if (action.type == 'selection'){
         lamps.select(action.value);
       }
+      
+      if (action.type == 'group') {
+        if (action.value == 'off') {
+          lamps.setAllLampsOff();
+        }
+      }
     }
   }
 });
