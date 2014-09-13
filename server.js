@@ -80,6 +80,8 @@ var joystickAction = function(event){
       
       var action = type[event.type][event.number][event.value];
       
+      console.log(action);
+      
       if (actions[action]){
         actions[action](event);
       } else {
