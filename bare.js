@@ -67,7 +67,7 @@ var rightshoulderpress = function() {
     alertCurrent();
 }
 
-var back:press = function () {
+var backpress = function () {
     alertCurrent();
 }
 
