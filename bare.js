@@ -12,23 +12,86 @@ var HueApi = hue.HueApi,
     api = new HueApi(host, username),
     currentLamp = 1;
 
+//helpers
+var displayResult = function(result) {
+    console.log(result);
+};
+
+var displayError = function(err) {
+    console.error(err);
+};
+
 var setCurrentLampRGB = function(r, g, b){
     api.setLightState(currentLamp, lightState.create().on().rgb(r, g, b))
-       .then()
-       .fail()
+       .then(displayResult)
+       .fail(displayError)
        .done();
 }
 
-var apress = function(){
-    setCurrentLampRGB(0, 255, 0);
+var alertCurrent = function() {
+    api.setLightState(currentLamp, lightState.create().on().alert())
+       .then(displayResult)
+       .fail(displayError)
+       .done();
 }
+
+//do stuff
+var bpress = function () {
+   setCurrentLampRGB(255, 0, 0);
+});
+
+var apress = function () {
+   setCurrentLampRGB(0, 255, 0);
+});
+
+var xpress = function () {
+   setCurrentLampRGB(0, 0, 255);
+});
+
+var ypress = function() {
+   api.setLightState(currentLamp, lightState.create().off())
+       .then(displayResult)
+       .fail(displayError)
+       .done();
+}
+
+
+//loop through lamps for selection.
+var leftshoulderpress = function () {
+    currentLamp = (currentLamp == 1) ? lampCount : --currentLamp;
+    alertCurrent();
+});
+
+var rightshoulderpress = function() {
+    currentLamp = (currentLamp == lampCount) ? 1 : ++currentLamp;
+    alertCurrent();
+});
+
+var back:press = function () {
+    alertCurrent();
+});
+
+
 
 cmd.stdout.on('data', function(output){
     
     //convert buffer to string
     output = output+'';
+    
     if (output.indexOf("A:1") > -1) {
-	apress();
+      apress();
+    }
+    
+    if (output.indexOf("B:1") > -1) {
+      bpress();
+    }
+    
+    if (output.indexOf("Y:1") > -1) {
+      ypress();
+    }
+    
+    if (output.indexOf("X:1") > -1) {
+      xpress();
     }
 });
 
