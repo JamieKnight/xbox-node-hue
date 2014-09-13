@@ -33,7 +33,7 @@ http.createServer( function(req,res) {
       res.write(form)
       res.write(util.inspect(decodedBody));
       
-      console.log(decodedBody)
+      color = decodedBody.color;
       
       res.write('</body><html>');
       res.end();
@@ -50,7 +50,7 @@ http.createServer( function(req,res) {
 
 }).listen('8124');
 
-/*
+
 //Respond to controller events:
 var hue = require("node-hue-api");
 
@@ -84,8 +84,12 @@ var setCurrentLampRGB = function(r, g, b){
 }
 
 buttons[0] = function() {
-  if 
+  console.log(color);
+  if (color == "green") {
    setCurrentLampRGB(0, 255, 0);
+  } else {
+   setCurrentLampRGB(0, 0, 255);
+  }
 }
 
 var joystick = new (require('joystick'))(0, 3500, 350);
@@ -96,4 +100,3 @@ joystick.on('button', function(event){
     action(event);
   }
 });
-*/
