@@ -13,10 +13,10 @@ var type = {
     4: { 1: "lb:press", 0: "lb:up" },
     8: { 1: "xbox:press", 0: "xbox:up" },
     6: { 1: "back:press", 0: "back:up" },
-    7: { 1: "start:press", 0: "start:up" },
+    7: { 1: "start:press", 0: "start:up" }
   },
   axis: {
-    7: { 32767: "ddown:press", '-32767': "dup:press" }
+    7: { 32767: "ddown:press", '-32767': "dup:press" },
     6: { 32767: "dright:press", '-32767': "dleft:press" }
   }
 }
