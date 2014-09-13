@@ -6,12 +6,7 @@ var form        = fs.readFileSync('form.html');
 
 var Server = function(){
 
-  this.state = {
-    'a:press': 'green',
-    'b:press': 'red',
-    'y:press': 'off',
-    'x:press': 'blue',
-  };
+  this.state = {};
 
   var state = this.state;
 
@@ -28,8 +23,11 @@ var Server = function(){
       // parse the received body data
       req.on('end', function() {  
         var decodedBody = querystring.parse(fullBody);
-        state[decodedBody.button]['color'] = decodedBody.color;
+        state[decodedBody.button]['value'] = decodedBody.value;
         state[decodedBody.button]['type'] = decodedBody.type;
+        
+        console.log(state);
+        
         res.writeHead(200, "OK", {'Content-Type': 'text/html'});
         res.write(form)
         res.write(util.inspect(decodedBody));
