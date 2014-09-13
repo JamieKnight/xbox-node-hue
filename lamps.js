@@ -4,6 +4,7 @@ var lamps = function(){
     this.host = "10.0.1.20";
     this.username = "newdeveloper";
     this.lampCount = 3;
+    this.lampCount = 1;
     this.HueApi = hue.HueApi;
     this.lightState = hue.lightState;
     this.api = new this.HueApi(this.host, this.username);
