@@ -22,21 +22,14 @@ var actions = {
 
 joystick.on('button', function(event){
 
-
-    if (!event.init 
-         && type[event.type] 
-         && type[event.type][event.number] 
-         && type[event.type][event.number][event.value]
-    ) {      
-      var eventName = type[event.type][event.number][event.value];
-      if (typeof server.state[eventName] !== 'undefined' ) {
-          var color = server.state[eventName];
-         
-          if (color == 'green'){
-            lamps.setCurrentLampRGB(0,255,0);
-          } else {
-            lamps.setCurrentLampRGB(0, 0, 255);
-          }
-      }
+  if (!event.init 
+       && type[event.type] 
+       && type[event.type][event.number] 
+       && type[event.type][event.number][event.value]
+  ) {      
+    var eventName = type[event.type][event.number][event.value];
+    if (typeof server.state[eventName] !== 'undefined' ) {
+        lamps.setCurrentLampRGB(server.state[eventName]);
     }
+  }
 });
