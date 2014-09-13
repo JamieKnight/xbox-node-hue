@@ -21,40 +21,47 @@ lamps.prototype.displayError = function(err) {
 
 lamps.prototype.setCurrentLampRGB = function(color){
 
-    switch (color) {
-      case "green":
-        var r = 0,
-            g = 255,
-            b = 0;
-        break;
-      case "red":
-        var r = 255,
-            g = 0,
-            b = 0;
-        break;
-      case "blue":
-        var r = 0,
-            g = 0,
-            b = 255;
-        break;
-      case "white":
-        var r = 255,
-            g = 255,
-            b = 255;
-        break;
-    }
-
-    this.api.setLightState(this.currentLamp, this.lightState.create().on().rgb(r, g, b))
-       .then(this.displayResult)
-       .fail(this.displayError)
-       .done();
+  switch (color) {
+    case "green":
+      var r = 0,
+          g = 255,
+          b = 0;
+      break;
+    case "red":
+      var r = 255,
+          g = 0,
+          b = 0;
+      break;
+    case "blue":
+      var r = 0,
+          g = 0,
+          b = 255;
+      break;
+    case "white":
+      var r = 255,
+          g = 255,
+          b = 255;
+      break;
+  }
+  
+  this.api.setLightState(this.currentLamp, this.lightState.create().on().rgb(r, g, b))
+    .then(this.displayResult)
+    .fail(this.displayError)
+    .done();
 }
 
 lamps.prototype.setCurrentLampOff = function() {
-    this.api.setLightState(this.currentLamp, this.lightState.create().off())
-         .then(this.displayResult)
-         .fail(this.displayError)
-         .done();
+  this.api.setLightState(this.currentLamp, this.lightState.create().off())
+    .then(this.displayResult)
+    .fail(this.displayError)
+    .done();
+}
+
+lamps.prototype.setCurrentLampWhite = function() {
+  this.api.setLightState(this.currentLamp, this.lightState.create().on().white(500, 100);)
+    .then(this.displayResult)
+    .fail(this.displayError)
+    .done();
 }
 
 module.exports = exports = lamps;

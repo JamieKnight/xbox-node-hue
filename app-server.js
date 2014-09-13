@@ -12,14 +12,6 @@ var type = {
   }
 }
 
-//action map
-/*
-var actions = {
-  'a:press': function() { lamps.setCurrentLampRGB(0,255,0); },
-  'y:press': function() { lamps.setCurrentLampOff(); }
-}
-*/
-
 joystick.on('button', function(event){
 
   if (!event.init 
@@ -34,6 +26,8 @@ joystick.on('button', function(event){
     
       if (action == 'off'){
         lamps.setCurrentLampOff();
+      } else if (action == 'white') {
+        lamps.setCurrentLampWhite(action);
       } else {
         lamps.setCurrentLampRGB(action);
       } 
