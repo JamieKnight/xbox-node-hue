@@ -4,7 +4,12 @@ var querystring = require('querystring');
 var util = require('util');
 var fs = require('fs');
 
+var lamps = require('./lamps');
+
+console.log(lamps);
+
 //dependencies for the controller and hue
+/*
 var hue = require("node-hue-api");
 var joystick = new (require('joystick'))(0, 3500, 350);
 
@@ -116,3 +121,4 @@ var joystickAction = function(event){
 //bind server
 http.createServer(serverAction).listen('80');
 joystick.on('button', joystickAction);
+*/
