@@ -108,14 +108,20 @@ lamps.prototype.setAllLampsState = function(state) {
   }
 }
 
-lamps.prototype.lowwhite = function() {
+lamps.prototype.lowwhite = function(state) {
+  
+  console.log('test');
 
-  for (var i = 1; i < (this.lampCount + 1); i++) {
+  console.log(this.lampCount);
+
+  /*
+for (var i = 1; i < (this.lampCount + 1); i++) {
     this.api.setLightState(i, this.lightState.create().on().xy(0.4595,0.4105).brightness(100))
        .then(this.displayResult)
        .fail(this.displayError)
        .done();
   }
+*/
 }
 
 //Presets
