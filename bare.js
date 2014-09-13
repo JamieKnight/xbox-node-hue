@@ -91,7 +91,7 @@ var joystick = new (require('joystick'))(0, 3500, 350);
 
 joystick.on('button', function(event){
   console.log(event);
-  if (!event.init && event.value == 1 && (action = actions[event.number)) {
+  if (!event.init && event.value == 1 && (action = actions[event.number])) {
     action();
   }
 });
