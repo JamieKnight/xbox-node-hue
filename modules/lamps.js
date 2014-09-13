@@ -22,11 +22,11 @@ var lamps = function(host, username){
 
 // Helpers
 lamps.prototype.displayResult = function(result) {
-    console.log(result);
+    if (!result) { console.log(result) };
 };
 
 lamps.prototype.displayError = function(err) {
-    console.error(err);
+    if (!result) { console.error(err) };
 };
 
 lamps.prototype.alertCurrent = function() {
