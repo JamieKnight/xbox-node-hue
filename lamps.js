@@ -19,7 +19,7 @@ lamps.prototype.displayError = function(err) {
 };
 
 lamps.prototype.setCurrentLampRGB = function(r, g, b){
-    api.setLightState(this.currentLamp, this.lightState.create().on().rgb(r, g, b))
+    this.api.setLightState(this.currentLamp, this.lightState.create().on().rgb(r, g, b))
        .then(this.displayResult)
        .fail(this.displayError)
        .done();
