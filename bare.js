@@ -99,6 +99,20 @@ buttons[7] = function () {
     }
 }
 
+buttons[10] = function () {
+    api.setLightState(4, lightState.create().on().brightness(50))
+       .then(displayResult)
+       .fail(displayError)
+       .done();
+}
+
+buttons[9] = function () {
+    api.setLightState(4, lightState.create().off())
+       .then(displayResult)
+       .fail(displayError)
+       .done();
+}
+
 //PRESETS
 axis[6] = function (event) {
     if (event.value == 32767) {
