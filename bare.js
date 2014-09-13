@@ -110,7 +110,7 @@ setInterval(function(){
         xpress();
       }
       
-      if (matches =  &&  > -1) {
+      if (output.indexOf("RB:1") > -1) {
         rightshoulderpress();
       }
       
