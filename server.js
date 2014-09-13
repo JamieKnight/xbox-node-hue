@@ -1,6 +1,6 @@
 var http = require('http');
 var querystring = require('querystring');
-var utils = require('util');
+var util = require('util');
 
 var form = '<html><head><title>Test</title></head><body><form method="post">Pressing A will set the color <select name="color"><option value="green">Green</option><option value="blue">Blue</option></select><input type="submit" value="save"></form>';
 
