@@ -5,9 +5,9 @@ http.createServer( function(req,res) {
    var currentTime = new Date();
    console.log('Client called at '+currentTime);
 
-   res.writeHead(200, {'Content-Type':'text/plain'});
-   res.write('The House is still here...\n');
-   res.write('Enjoy the Beach !\n');
+   res.writeHead(200, {'Content-Type':'text/html'});
+   res.write('<head><title>Test</title</head>');
+   res.write('<body><form>Pressing A will set the color <select name="color"><option value="green">Green</option><option value="blue">Blue</option></select></form>');
    res.end();
 
 }).listen('8124');
