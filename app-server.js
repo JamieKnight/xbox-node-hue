@@ -45,6 +45,8 @@ var eventIsMapped = function(event){
 }
 
 var joystickAction = function(event){
+  
+  console.log(event)
 
   var action = eventIsMapped(event);
 
