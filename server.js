@@ -28,8 +28,8 @@ var Server = function(){
       // parse the received body data
       req.on('end', function() {  
         var decodedBody = querystring.parse(fullBody);
-        state[decodedBody.button] = decodedBody.color;
-        
+        state[decodedBody.button]['color'] = decodedBody.color;
+        state[decodedBody.button]['type'] = decodedBody.type;
         res.writeHead(200, "OK", {'Content-Type': 'text/html'});
         res.write(form)
         res.write(util.inspect(decodedBody));
