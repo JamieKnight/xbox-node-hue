@@ -54,18 +54,17 @@ lamps.prototype.setCurrentLampRGB = function(color){
       break;
   }
   
-  console.log(r);
-  console.log(g);
-  console.log(b);
-  
   this.api.setLightState(this.currentLamp, this.lightState.create().on().rgb(r, g, b))
     .then(this.displayResult)
     .fail(this.displayError)
     .done();
 }
 
-lamps.prototype.setCurrentLampOff = function() {
-  this.api.setLightState(this.currentLamp, this.lightState.create().off())
+lamps.prototype.setCurrentLampState = function(state) {
+
+  var lamp = (state == "off") ? this.lightState.create().off() : this.lightState.create().on() ; 
+
+  this.api.setLightState(this.currentLamp, lamp)
     .then(this.displayResult)
     .fail(this.displayError)
     .done();
@@ -108,9 +107,12 @@ lamps.prototype.setAllLampsWhite() {
 }
 */
 
-lamps.prototype.setAllLampsOff = function() {
+lamps.prototype.setAllLampsState = function(state) {
+
+  var lamp = (state == "off") ? this.lightState.create().off() : this.lightState.create().on() ; 
+
   for (i = 1; i < (this.lampCount + 1); i++) {
-    this.api.setLightState(i, this.lightState.create().off())
+    this.api.setLightState(i, lamp)
        .then(this.displayResult)
        .fail(this.displayError)
        .done();

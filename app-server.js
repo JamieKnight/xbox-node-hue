@@ -13,6 +13,7 @@ var type = {
     4: { 1: "lb:press", 0: "lb:up" },
     8: { 1: "xbox:press", 0: "xbox:up" },
     6: { 1: "back:press", 0: "back:up" },
+    7: { 1: "start:press", 0: "start:up" },
   }
 }
 
@@ -31,8 +32,8 @@ joystick.on('button', function(event){
       var action = server.state[eventName];
     
       if (action.type == 'color') {
-        if (action.value == 'off'){
-          lamps.setCurrentLampOff();
+        if (action.value == 'off' || action.value == 'on'){
+          lamps.setCurrentLampState(action.value);
         } else if (action.value == 'white') {
           lamps.setCurrentLampWhite(action.value);
         } else {
@@ -45,8 +46,8 @@ joystick.on('button', function(event){
       }
       
       if (action.type == 'group') {
-        if (action.value == 'off') {
-          lamps.setAllLampsOff();
+        if (action.value == 'off' || action.value == 'on') {
+          lamps.setAllLampsState(action.value);
         }
       }
     }

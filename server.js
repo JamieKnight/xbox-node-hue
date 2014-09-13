@@ -14,7 +14,8 @@ var Server = function(){
     'rb:press': {type: 'selection', value: 'next' },
     'lb:press': {type: 'selection', value: 'prev' },
     'back:press': {type: 'selection', value: 'current' },
-    'xbox:press': {type: 'group', value: 'off' }
+    'xbox:press': {type: 'group', value: 'off' },
+    'start:press': {type: 'group', value: 'on' },
   };
 
   var state = this.state;
