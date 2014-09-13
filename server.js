@@ -78,7 +78,7 @@ var joystickAction = function(event){
     if ( typeof type[event.type] !== 'undefined' 
          && typeof type[event.type][event.number] !== 'undefined') {
       
-      console.log(type[event.type][event.number];
+      console.log(type[event.type][event.number]);
     } else {
       console.log(false)
     }
