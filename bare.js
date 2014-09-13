@@ -11,7 +11,7 @@ var HueApi = hue.HueApi,
     lightState = hue.lightState,
     api = new HueApi(host, username),
     currentLamp = 1,
-    actions = [];
+    buttons = [];
 
 //helpers
 var displayResult = function(result) {
@@ -40,22 +40,22 @@ var alertCurrent = function() {
 //do stuff
 
 //B Press
-actions[1] = function() {
+buttons[1] = function() {
    setCurrentLampRGB(255, 0, 0);
 }
 
 //A Press
-actions[0] = function() {
+buttons[0] = function() {
    setCurrentLampRGB(0, 255, 0);
 }
 
 //X Press
-actions[2] = function() {
+buttons[2] = function() {
    setCurrentLampRGB(0, 0, 255);
 }
 
 //Y Press
-actions[3] = function() {
+buttons[3] = function() {
    api.setLightState(currentLamp, lightState.create().off())
        .then(displayResult)
        .fail(displayError)
@@ -63,23 +63,19 @@ actions[3] = function() {
 }
 
 //Right Shoulder
-actions[5] = function () {
+buttons[5] = function () {
     currentLamp = (currentLamp == 1) ? lampCount : --currentLamp;
     alertCurrent();
 }
 
 //Right Shoulder
-actions[4] = function() {
+buttons[4] = function() {
     currentLamp = (currentLamp == lampCount) ? 1 : ++currentLamp;
-    alertCurrent();
-}
-//Back
-actions[6] = function () {
     alertCurrent();
 }
 
 // Xbox
-actions[8] = function() {
+buttons[8] = function() {
   for (i = 1; i < (lampCount + 1); i++) {
     api.setLightState(i, lightState.create().off())
        .then(displayResult)
@@ -89,7 +85,7 @@ actions[8] = function() {
 }
 
 // Start
-actions[7] = function () {
+buttons[7] = function () {
     for (i = 1; i < (lampCount + 1); i++) {
         api.setLightState(i, lightState.create().on())
            .then(displayResult)
@@ -99,7 +95,7 @@ actions[7] = function () {
 }
 
 //PRESETS
-actions[6] = function (event) {
+axis[6] = function (event) {
     if (event.value == 32767) {
       for (i = 1; i < (lampCount + 1); i++) {
         api.setLightState(i, lightState.create().on().white(250, 100))
@@ -107,17 +103,19 @@ actions[6] = function (event) {
            .fail(displayError)
            .done();
        }
-    } else {
+    } else if (event.value == -32767){
       for (i = 1; i < (lampCount + 1); i++) {
         api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(50))
            .then(displayResult)
            .fail(displayError)
            .done();
       }
+    } else {
+      
     }
 }
 
-actions[7] = function (event) {
+axis[7] = function (event) {
   if (event.value == 32767) {
      for (i = 1; i < (lampCount + 1); i++) {
         api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(1))
@@ -135,19 +133,19 @@ actions[7] = function (event) {
   }
 }
 
-//maps actions to functions.
+//maps buttons to functions.
 var joystick = new (require('joystick'))(0, 3500, 350);
 
 joystick.on('button', function(event){
   console.log(event);
-  if (!event.init && event.value == 1 && (action = actions[event.number])) {
+  if (!event.init && event.value == 1 && (action = buttons[event.number])) {
     action(event);
   }
 });
 
 joystick.on('axis', function(event){
   console.log(event);
-  if (!event.init && event.value !=  0 && (action = actions[event.number])) {
+  if (!event.init && event.value !=  0 && (action = axis[event.number])) {
     action(event);
   }
 });
