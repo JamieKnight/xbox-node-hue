@@ -14,7 +14,7 @@ var type = {
 
 //action map
 var actions = {
-  'a:press': function() { lamps.setCurrentLampRGB(0,255,0); }
+  'a:press': function() { lamps.setCurrentLampRGB(0,255,0); },
   'y:press': function() { lamps.setCurrentLampOff(); }
 }
 
