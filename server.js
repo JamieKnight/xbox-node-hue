@@ -6,6 +6,9 @@ var form        = fs.readFileSync('form.html');
 
 var Server = function(){
 
+  var test = "mooo";
+
+
   http.createServer(function(req,res) {
      
     //process the form
