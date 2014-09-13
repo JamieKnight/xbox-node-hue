@@ -83,7 +83,7 @@ var joystickAction = function(event) {
        }
     }
     
-    if (action.type == 'preset'){
+    if (action.type == 'preset' && lamps[action.value]){
       lamps[action.value](action.value);
     }
   }
