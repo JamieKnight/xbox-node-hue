@@ -4,9 +4,10 @@ var querystring = require('querystring');
 var util = require('util');
 var fs = require('fs');
 
-var lamps = require('./lamps');
-var lamp = new Lamps();
-lamp.setCurrentLampRGB(0, 0, 255);
+var Lamps = require('./lamps');
+var lamps = new Lamps();
+
+lamps.setCurrentLampRGB(0, 0, 255);
 
 //dependencies for the controller and hue
 /*
