@@ -6,14 +6,10 @@ var form        = fs.readFileSync('form.html');
 
 var Server = function(){
 
-  this.state = [];  
+  state = [];  
+  
   http.createServer(function(req,res) {
     
-    console.log(this);
-    
-    var state = this.state;
-    
-    console.log(this.state);
       
     //process the form
     if (req.method == 'POST') {
@@ -33,7 +29,7 @@ var Server = function(){
         res.write(util.inspect(decodedBody));
         res.end();
         
-        //state[decodedBody.button] = decodedBody.color;
+        state[decodedBody.button] = decodedBody.color;
       });
     
     } else {  
