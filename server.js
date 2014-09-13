@@ -12,6 +12,8 @@ var Server = function(){
 Server.prototype.serverAction = function (req,res) {
     
   var state = this.state;
+  
+  console.log(this.state);
     
   //process the form
   if (req.method == 'POST') {
@@ -31,7 +33,7 @@ Server.prototype.serverAction = function (req,res) {
       res.write(util.inspect(decodedBody));
       res.end();
       
-      state[decodedBody.button] = decodedBody.color;
+      //state[decodedBody.button] = decodedBody.color;
     });
   
   } else {  
