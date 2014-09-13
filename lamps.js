@@ -19,6 +19,13 @@ lamps.prototype.displayError = function(err) {
     console.error(err);
 };
 
+lamps.prototype.alertCurrent = function() {
+    this.api.setLightState(this.currentLamp, this.lightState.create().on().alert())
+       .then(this.displayResult)
+       .fail(this.displayError)
+       .done();
+}
+
 lamps.prototype.setCurrentLampRGB = function(color){
 
   switch (color) {
@@ -62,6 +69,17 @@ lamps.prototype.setCurrentLampWhite = function() {
     .then(this.displayResult)
     .fail(this.displayError)
     .done();
+}
+
+lamps.prototype.selectPreviousLamp = function () {
+    this.currentLamp = (this.currentLamp == 1) ? this.lampCount : --this.currentLamp;
+    this.alertCurrent();
+}
+
+//Right Shoulder
+lamps.prototype.selectNextLamp  = function() {
+    this.currentLamp = (this.currentLamp == this.lampCount) ? 1 : ++this.currentLamp;
+    this.alertCurrent();
 }
 
 module.exports = exports = lamps;
