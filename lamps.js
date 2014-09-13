@@ -94,20 +94,6 @@ lamps.prototype.currentSelected = function(option) {
 }
 
 // Group Controls
-/*
-lamps.prototype.setAllLampsRGB(color) {
-  for (i = 1; i < (lampCount + 1); i++) {
-    this.setCurrentLampRGB(color);   
-  }
-}
-
-lamps.prototype.setAllLampsWhite() {
-  for (i = 1; i < (lampCount + 1); i++) {
-    this.lamps.prototype.setCurrentLampWhite();   
-  }
-}
-*/
-
 lamps.prototype.setAllLampsState = function(state) {
 
   var lamp = (state == "off") ? this.lightState.create().off() : this.lightState.create().on() ; 
@@ -120,18 +106,16 @@ lamps.prototype.setAllLampsState = function(state) {
   }
 }
 
-//Presets
+lamps.prototype.lowwhite = function() {
 
-lamps.prototype.lowwhite = function(){ 
-  console.log('low white used');
-  console.log(this.lampCount);
-    for (var i = 1; i < (this.lampCount + 1); i++) {
-      console.log(i);
-      this.api.setLightState(i, this.lightState.create().on().xy(0.4595,0.4105).brightness(1))
-        .then(this.displayResult)
-        .fail(this.displayError)
-        .done();
-    }
+  for (var i = 1; i < (this.lampCount + 1); i++) {
+    this.api.setLightState(i, this.lightState.create().on().xy(0.4595,0.4105).brightness(100))
+       .then(this.displayResult)
+       .fail(this.displayError)
+       .done();
+  }
 }
+
+//Presets
 
 module.exports = exports = lamps;
