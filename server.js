@@ -12,6 +12,7 @@ var Server = function(){
     'y:press': {type: 'color', value: 'off'},
     'x:press': {type: 'color', value: 'blue'},
     'rb:press': {type: 'selection', value: 'next'},
+    'lb:press': {type: 'selection', value: 'prev'}
   };
 
   var state = this.state;

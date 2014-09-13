@@ -77,9 +77,14 @@ lamps.prototype.selectPreviousLamp = function () {
 }
 
 //Right Shoulder
-lamps.prototype.selectNextLamp  = function() {
+lamps.prototype.select  = function(option) {
+  if (option == 'next'){
     this.currentLamp = (this.currentLamp == this.lampCount) ? 1 : ++this.currentLamp;
     this.alertCurrent();
+  } else if (option == 'prev') {
+    this.currentLamp = (this.currentLamp == 1) ? this.lampCount : --this.currentLamp;
+    this.alertCurrent();
+  }
 }
 
 module.exports = exports = lamps;

@@ -34,9 +34,8 @@ joystick.on('button', function(event){
         } else {
           lamps.setCurrentLampRGB(action.value);
         }
-      } else {
-        console.log(action.type);
-        
+      } else if  (action.type == 'selection'){
+        lamps.setCurrentLampRGB(action.value);
       }
     }
   }
