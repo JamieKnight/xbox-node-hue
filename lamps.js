@@ -65,7 +65,7 @@ lamps.prototype.setCurrentLampOff = function() {
 }
 
 lamps.prototype.setCurrentLampWhite = function() {
-  this.api.setLightState(this.currentLamp, this.lightState.create().on().white(500, 100))
+  this.api.setLightState(this.currentLamp, this.lightState.create().on().white(250, 100))
     .then(this.displayResult)
     .fail(this.displayError)
     .done();
