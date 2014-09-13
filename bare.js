@@ -38,15 +38,15 @@ var alertCurrent = function() {
 //do stuff
 var bpress = function () {
    setCurrentLampRGB(255, 0, 0);
-});
+}
 
 var apress = function () {
    setCurrentLampRGB(0, 255, 0);
-});
+}
 
 var xpress = function () {
    setCurrentLampRGB(0, 0, 255);
-});
+}
 
 var ypress = function() {
    api.setLightState(currentLamp, lightState.create().off())
@@ -60,16 +60,16 @@ var ypress = function() {
 var leftshoulderpress = function () {
     currentLamp = (currentLamp == 1) ? lampCount : --currentLamp;
     alertCurrent();
-});
+}
 
 var rightshoulderpress = function() {
     currentLamp = (currentLamp == lampCount) ? 1 : ++currentLamp;
     alertCurrent();
-});
+}
 
 var back:press = function () {
     alertCurrent();
-});
+}
 
 
 
