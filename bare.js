@@ -123,6 +123,8 @@ cmd.stdout.on('data', function(output){
       if (output.indexOf("guide:1") > -1) {
         guidepress();
       }
+    } else {
+      console.log("input ignored"); 
     }
     
 });
