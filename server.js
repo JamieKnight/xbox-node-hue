@@ -31,7 +31,7 @@ Server.prototype.serverAction = function (req,res) {
       res.write(util.inspect(decodedBody));
       res.end();
       
-      state[0] = decodedBody.color;
+      state[decodedBody.button] = decodedBody.color;
     });
   
   } else {  
