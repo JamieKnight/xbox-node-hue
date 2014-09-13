@@ -33,6 +33,8 @@ var alertCurrent = function() {
        .then(displayResult)
        .fail(displayError)
        .done();
+       
+       console.log(currentLamp);
 }
 
 //do stuff
