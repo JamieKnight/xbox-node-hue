@@ -6,7 +6,7 @@ var lamps = function(){
     this.lampCount = 3;
     this.HueApi = hue.HueApi;
     this.lightState = hue.lightState;
-    this.api = new this.HueApi(host, username);
+    this.api = new this.HueApi(this.host, this.username);
 }
 
 // Helpers
