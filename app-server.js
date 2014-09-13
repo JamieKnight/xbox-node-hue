@@ -16,8 +16,8 @@ var type = {
     7: { 1: "start:press", 0: "start:up" },
   },
   axis: {
-    7: { 32767: "ddown:press", -32767: "dup:press" }
-    6: { 32767: "dright:press", -32767: "dleft:press" }
+    7: { 32767: "ddown:press", '-32767': "dup:press" }
+    6: { 32767: "dright:press", '-32767': "dleft:press" }
   }
 }
 
