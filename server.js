@@ -65,7 +65,8 @@ var type = {
     number: {
       0: {
         value: {
-          1: "apress"
+          1: "a:press",
+          0: "a:up"
         }
       }
     }
@@ -76,9 +77,10 @@ var type = {
 var joystickAction = function(event){
 
     if ( typeof type[event.type] !== 'undefined' 
-         && typeof type[event.type]['number'][event.number] !== 'undefined') {
+         && typeof type[event.type]['number'][event.number] !== 'undefined'
+         && typeof type[event.type]['number'][event.number]['value'][event.value] !== 'undefined') {
       
-      console.log(type[event.type]['number'][event.number]);
+      console.log(type[event.type]['number'][event.number]['value'][event.value]);
     } else {
       console.log(false)
     }
