@@ -92,39 +92,38 @@ cmd.stdout.on('data', function(output){
 
 //poll every 500ms
 setInterval(function(){         
-      var output = last;
-      
-      if (output.indexOf("A:1") > -1) {
-        apress();
-      }
-      
-      if (output.indexOf("B:1") > -1) {
-        bpress();
-      }
-      
-      if (output.indexOf("Y:1") > -1) {
-        ypress();
-      }
-      
-      if (output.indexOf("X:1") > -1) {
-        xpress();
-      }
-      
-      if (output.indexOf("RB:1") > -1) {
-        rightshoulderpress();
-      }
-      
-      if (output.indexOf("LB:1") > -1) {
-        leftshoulderpress();
-      }
-  
-      if (output.indexOf("back:1") > -1) {
-        backpress();
-      }
-      
-      if (output.indexOf("guide:1") > -1) {
-        guidepress();
-      }
+    var output = last;
+    
+    if (output.indexOf("A:1") > -1) {
+      apress();
+    }
+    
+    if (output.indexOf("B:1") > -1) {
+      bpress();
+    }
+    
+    if (output.indexOf("Y:1") > -1) {
+      ypress();
+    }
+    
+    if (output.indexOf("X:1") > -1) {
+      xpress();
+    }
+    
+    if (output.indexOf("RB:1") > -1) {
+      rightshoulderpress();
+    }
+    
+    if (output.indexOf("LB:1") > -1) {
+      leftshoulderpress();
+    }
+
+    if (output.indexOf("back:1") > -1) {
+      backpress();
+    }
+    
+    if (output.indexOf("guide:1") > -1) {
+      guidepress();
     }
 }, 500);
 
