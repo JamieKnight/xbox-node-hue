@@ -14,7 +14,12 @@ var type = {
     8: { 1: "xbox:press", 0: "xbox:up" },
     6: { 1: "back:press", 0: "back:up" },
     7: { 1: "start:press", 0: "start:up" },
+  }//,
+  /*
+axis: {
+    6: { 32767: }
   }
+*/
 }
 
 
@@ -45,6 +50,8 @@ var eventIsMapped = function(event){
 }
 
 var joystickAction = function(event) {
+
+  console.log(event);
 
   var action = eventIsMapped(event)
   
