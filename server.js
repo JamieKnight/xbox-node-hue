@@ -15,6 +15,7 @@ var host = "10.0.1.20",
     HueApi = hue.HueApi,
     lightState = hue.lightState,
     api = new HueApi(host, username),
+    currentLamp = 1,
     buttons = [],
     axis = [];
 
