@@ -85,6 +85,10 @@ buttons[8] = function() {
   }
 }
 
+buttons[6] = function(){
+  alertCurrent();
+} 
+
 // Start
 buttons[7] = function () {
     for (i = 1; i < (lampCount + 1); i++) {
@@ -104,15 +108,13 @@ axis[6] = function (event) {
            .fail(displayError)
            .done();
        }
-    } else if (event.value == -32767){
+    } else {
       for (i = 1; i < (lampCount + 1); i++) {
         api.setLightState(i, lightState.create().on().xy(0.4595,0.4105).brightness(50))
            .then(displayResult)
            .fail(displayError)
            .done();
       }
-    } else {
-      
     }
 }
 
