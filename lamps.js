@@ -26,4 +26,11 @@ lamps.prototype.setCurrentLampRGB = function(r, g, b){
        .done();
 }
 
+lamps.prototype.setCurrentLampOff = function() {
+    this.api.setLightState(cthis.currentLamp, this.lightState.create().off())
+         .then(this.displayResult)
+         .fail(this.displayError)
+         .done();
+}
+
 module.exports = exports = lamps;
