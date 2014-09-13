@@ -62,31 +62,33 @@ var serverAction = function (req,res) {
 
 var type = {
   button: {
-    number: {
-      0: { value: { 1: "a:press", 0: "a:up" }},
-      1: { value: { 1: "b:press", 0: "b:up" }},
-      2: { value: { 1: "x:press", 0: "x:up" }},
-      3: { value: { 1: "y:press", 0: "y:up" }}
-    }
+    0: { 1: "a:press", 0: "a:up" },
+    1: { 1: "b:press", 0: "b:up" },
+    2: { 1: "x:press", 0: "x:up" },
+    3: { 1: "y:press", 0: "y:up" }
   }
+}
+
+var actions = {
+  'a:press': buttons[0],
+  'x:press': buttons[0]
 }
 
 var joystickAction = function(event){
 
-    if ( typeof type[event.type] !== 'undefined' 
-         && typeof type[event.type]['number'][event.number] !== 'undefined'
-         && typeof type[event.type]['number'][event.number]['value'][event.value] !== 'undefined') {
+    if (!event.init && type[event.type] && typeof type[event.type][event.number] && typeof type[event.type][event.number][event.value]) {
       
-      console.log(type[event.type]['number'][event.number]['value'][event.value]);
+      var action = type[event.type][event.number][event.value]);
+      
+      if (actions[action]){
+        actions[action](event);
+      } else {
+        console.log("not mapped");
+      }
+      
     } else {
-      console.log(false)
+      console.log("not mapped");
     }
-
-   /*
- if (!event.init && event.value == 1 && (action = buttons[event.number])) {
-      action(event);
-    }
-*/
 }
 
 // Helpers

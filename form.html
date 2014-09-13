@@ -8,8 +8,20 @@
 <body>
   <form method="post">
     <fieldset>
+      <input type="hidden" name="button" value="a:press" />
       Pressing A will set the Color 
-      <select name="color0">
+      <select name="color">
+        <option value="green">Green</option>
+        <option value="blue">Blue</option>
+      </select>
+      <input type="submit" value="save">
+    </fieldset>
+  </form>
+  <form method="post">
+    <fieldset>
+      <input type="hidden" name="button" value="b:press" />
+      Pressing A will set the Color 
+      <select name="color">
         <option value="green">Green</option>
         <option value="blue">Blue</option>
       </select>
