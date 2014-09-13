@@ -62,7 +62,7 @@ var serverAction = function (req,res) {
   }
 }
 
-var joysticAction = function(event){
+var joystickAction = function(event){
     if (!event.init && event.value == 1 && (action = buttons[event.number])) {
       action(event);
     }
@@ -95,5 +95,5 @@ buttons[0] = function() {
 }
 
 //bind server
-http.createServer(severAction).listen('80');
-joystick.on('button', joysticAction);
+http.createServer(serverAction).listen('80');
+joystick.on('button', joystickAction);
