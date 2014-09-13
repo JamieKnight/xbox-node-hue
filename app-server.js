@@ -1,5 +1,5 @@
 var lamps       = new (require('./lamps'));
-var server      = require('./server');
+var server      = new (require('./server'));
 var joystick    = new (require('joystick'))(0, 3500, 350);
 
 //key map
