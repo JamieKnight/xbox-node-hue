@@ -82,16 +82,21 @@ var joystickAction = function(event){
       
       console.log(eventName);
       
-      if (actions[action]){
+      console.log(actions[action]);
+      
+      /*
+if (actions[action]){
         var action = actions[action];
         action();
       } else {
         console.log("not action found");
       }
+*/
       
     } else {
       console.log("not mapped");
     }
+
 }
 
 // Helpers
