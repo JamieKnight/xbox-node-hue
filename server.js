@@ -8,6 +8,7 @@ var Server = function(){
 
   this.state = ['mooo'];
 
+  var state = this.state;
 
   http.createServer(function(req,res) {
      
@@ -29,7 +30,7 @@ var Server = function(){
         res.write(util.inspect(decodedBody));
         res.end();
         
-        this.state[decodedBody.button] = decodedBody.color;
+        state[decodedBody.button] = decodedBody.color;
       });
     
     } else {  
