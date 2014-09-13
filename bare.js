@@ -86,7 +86,8 @@ var last = '';
 
 cmd.stdout.on('data', function(output){
     //convert buffer to string
-    last = last +'';    
+    last = output +'';
+    console.log("controller button pressed");    
 });
 
 
