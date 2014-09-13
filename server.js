@@ -26,7 +26,7 @@ var form = fs.readFileSync('form.html');
 var buttons = [],
     colors  = [];
     
-color[0] = 'green';
+colors[0] = 'green';
 
 //setup & joystic actions.
 var serverAction = function (req,res) {
@@ -50,7 +50,7 @@ var serverAction = function (req,res) {
       res.write(form)
       res.write(util.inspect(decodedBody));
       
-      color[0] = decodedBody.color0;
+      colors[0] = decodedBody.color0;
       
       res.write('</body><html>');
       res.end();
