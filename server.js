@@ -42,4 +42,4 @@ Server.prototype.serverAction = function (req,res) {
   }
 }
 
-module.exports = exports = server;
+module.exports = exports = Server;
