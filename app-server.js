@@ -1,5 +1,5 @@
 var lamps       = new (require('./lamps'));
-var server      = new (require('./server'));
+var server      = require('./server');
 var joystick    = new (require('joystick'))(0, 3500, 350);
 
 //key map
@@ -21,7 +21,7 @@ var actions = {
 }
 
 joystick.on('button', function(event){
-    console.log(server.state);
+    console.log(server);
     if (!event.init 
          && type[event.type] 
          && type[event.type][event.number] 
