@@ -44,16 +44,17 @@ var eventIsMapped = function(event){
   }
 }
 
-var joystickAction = function(event){
-  
-  console.log(event)
+var joystickAction = function(event) {
 
   var action = eventIsMapped(event);
 
   if (action) {        
     if (action.type == 'color') {
       switch (action.value) {
-        case "off" || "on":
+        case "off":
+          lamps.setCurrentLampState(action.value);
+          break;
+        case "on":
           lamps.setCurrentLampState(action.value);
           break;
         case "white":
@@ -70,10 +71,8 @@ var joystickAction = function(event){
     }
     
     if (action.type == 'group') {
-       switch (action.value) {
-        case "off" || "on":
+       if (action.value == "on" || action.value == "off") {
           lamps.setAllLampsState(action.value);
-          break;
        }
     }
   }
