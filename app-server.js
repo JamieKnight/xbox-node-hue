@@ -46,7 +46,9 @@ var eventIsMapped = function(event){
 
 var joystickAction = function(event) {
 
-  if ((var action = eventIsMapped(event))) {
+  var action = eventIsMapped(event)
+  
+  if (action) {
     if (action.type == 'color') {
       switch (action.value) {
         case "off":
