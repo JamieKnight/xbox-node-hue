@@ -257,8 +257,27 @@
         <input type="submit" value="Save" id="right-save">
       </fieldset>
     </form>
-
-
+    
+    <form method="post">
+      <fieldset>
+        <input type="hidden" name="button" value="dleft:press" />
+        <input type="hidden" name="type" value="preset" />
+        <label for="left">Pressing <span class="pill pill-left">LEFT</span> will set all the lights too </label>
+        <select name="value" id="left">
+          <option value="highwhite" >Warm white, 100% brightness</option>
+          <option value="midwarmwhite">Warm white 50% Brightness</option>
+          <option value="lowwhite" selected>Warm white, 10% brightness</option>
+<!--
+          <option value="highcoldwhite">Cold white, 100% brightness</option>
+          <option value="midcoldwhite">Cold white, 50% brightness</option>
+          <option value="lowcoldwhite">Cold white, 10% brightness</option>
+-->
+<!--           <option value="off">Off</option> -->
+        </select>
+        <label for="left-save" class="hide">right button settings</label>
+        <input type="submit" value="Save" id="left-save">
+      </fieldset>
+    </form>
   </div>
 
 </body>
