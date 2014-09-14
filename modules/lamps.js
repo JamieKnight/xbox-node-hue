@@ -168,7 +168,19 @@ lamps.prototype.pinkish = function(){
        .then(this.displayResult)
        .fail(this.displayError)
        .done();
+       
+  this.api.setLightState(2, this.lightState.create().on().xy(0.2893, 0.156).brightness(10))
+       .then(this.displayResult)
+       .fail(this.displayError)
+       .done();
 
 }
+
+lamps.prototype.timer = function(){
+  
+  var action = this.setAllLampsState;
+  setTimeout(function(){  action('off')}, 500)
+  
+} 
 
 module.exports = exports = lamps;
