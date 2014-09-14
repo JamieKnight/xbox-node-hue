@@ -29,14 +29,13 @@ Server.prototype.request = function(req,res) {
     // parse the received body data
     req.on('end', function() {  
       var decodedBody = querystring.parse(fullBody);
-            
+      
+      //modify in memory state array.   
       state[decodedBody.button] = {type: decodedBody.type, value: decodedBody.value}
       
-      console.log(state);
-      
+      //reload the page.
       res.writeHead(200, "OK", {'Content-Type': 'text/html'});
       res.write(form)
-      res.write(util.inspect(decodedBody));
       res.end();
     });
   

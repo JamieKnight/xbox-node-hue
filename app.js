@@ -35,7 +35,7 @@ server.state = {
   'start:press': {type: 'group', value: 'on' },
   'ddown:press': {type: 'preset', value: 'lowwhite' },
   'dup:press': {type: 'preset', value: 'highwhite' },
-  'dleft:press': {type: 'preset', value: 'highcoldwhite' },
+  'dleft:press': {type: 'preset', value: 'pinkish' },
   'dright:press': {type: 'preset', value: 'midwhite' }
 }
 
