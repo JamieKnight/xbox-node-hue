@@ -128,7 +128,7 @@
       <fieldset>
         <input type="hidden" name="button" value="a:press" />
         <input type="hidden" name="type" value="color" />
-        <label for="green">Pressing <span class="button button-a">A</span> will set the selected light colour too</label> 
+        <label for="green">Pressing <span class="button button-a">A</span> will set the selected light colour too</label>
         <select name="value" id="green">
           <option value="green" selected>Green</option>
           <option value="blue">Blue</option>
@@ -140,12 +140,12 @@
         <input type="submit" value="Save" id="green-save">
       </fieldset>
     </form>
-  
+
   <form method="post">
       <fieldset>
         <input type="hidden" name="button" value="b:press" />
         <input type="hidden" name="type" value="color" />
-        <label for="red">Pressing <span class="button button-b">B</span> will set the selected light colour too</label> 
+        <label for="red">Pressing <span class="button button-b">B</span> will set the selected light colour too</label>
         <select name="value" id="red">
           <option value="green">Green</option>
           <option value="blue">Blue</option>
@@ -157,7 +157,7 @@
         <input type="submit" value="Save" id="red-save">
       </fieldset>
     </form>
-    
+
     <form method="post">
       <fieldset>
         <input type="hidden" name="button" value="x:press" />
@@ -174,7 +174,7 @@
         <input type="submit" value="Save" id="blue-save">
       </fieldset>
     </form>
-   
+
     <form method="post">
       <fieldset>
         <input type="hidden" name="button" value="y:press" />
@@ -192,8 +192,8 @@
       </fieldset>
     </form>
   </div>
-  
-    
+
+
   <div class="collection">
     <form method="post">
       <fieldset>
@@ -204,16 +204,18 @@
           <option value="highwhite" selected>Warm white, 100% brightness</option>
           <option value="midwarmwhite">Warm white 50% Brightness</option>
           <option value="lowwhite">Warm white, 10% brightness</option>
+<!--
           <option value="highcoldwhite">Cold white, 100% brightness</option>
           <option value="midcoldwhite">Cold white, 50% brightness</option>
           <option value="lowcoldwhite">Cold white, 10% brightness</option>
-          <option value="off">Off</option>
+-->
+<!--           <option value="off">Off</option> -->
         </select>
         <label for="up-save" class="hide">Up button settings</label>
         <input type="submit" value="Save" id="up-save">
       </fieldset>
     </form>
-    
+
     <form method="post">
       <fieldset>
         <input type="hidden" name="button" value="ddown:press" />
@@ -223,16 +225,40 @@
           <option value="highwhite" >Warm white, 100% brightness</option>
           <option value="midwarmwhite">Warm white 50% Brightness</option>
           <option value="lowwhite" selected>Warm white, 10% brightness</option>
+<!--
           <option value="highcoldwhite">Cold white, 100% brightness</option>
           <option value="midcoldwhite">Cold white, 50% brightness</option>
           <option value="lowcoldwhite">Cold white, 10% brightness</option>
-          <option value="off">Off</option>
+-->
+<!--           <option value="off">Off</option> -->
         </select>
         <label for="down-save" class="hide">down button settings</label>
         <input type="submit" value="Save" id="down-save">
       </fieldset>
     </form>
 
+     <form method="post">
+      <fieldset>
+        <input type="hidden" name="button" value="ddown:press" />
+        <input type="hidden" name="type" value="preset" />
+        <label for="right">Pressing <span class="pill pill-right">RIGHT</span> will set all the lights too </label>
+        <select name="value" id="right">
+          <option value="highwhite" >Warm white, 100% brightness</option>
+          <option value="midwarmwhite">Warm white 50% Brightness</option>
+          <option value="lowwhite" selected>Warm white, 10% brightness</option>
+<!--
+          <option value="highcoldwhite">Cold white, 100% brightness</option>
+          <option value="midcoldwhite">Cold white, 50% brightness</option>
+          <option value="lowcoldwhite">Cold white, 10% brightness</option>
+-->
+<!--           <option value="off">Off</option> -->
+        </select>
+        <label for="right-save" class="hide">right button settings</label>
+        <input type="submit" value="Save" id="right-save">
+      </fieldset>
+    </form>
+
+
   </div>
-  
+
 </body>
