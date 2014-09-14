@@ -36,7 +36,7 @@ server.state = {
   'ddown:press': {type: 'preset', value: 'lowwhite' },
   'dup:press': {type: 'preset', value: 'highwhite' },
   'dleft:press': {type: 'preset', value: 'pinkish' },
-  'dright:press': {type: 'preset', value: 'midwhite' }
+  'dright:press': {type: 'preset', value: 'timer' }
 }
 
 var eventIsMapped = function(event){
