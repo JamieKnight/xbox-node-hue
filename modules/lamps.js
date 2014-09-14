@@ -132,4 +132,32 @@ lamps.prototype.midwhite = function(state) {
        .done();
   }
 }
+
+lamps.prototype.highcoldwhite = function(state) {
+  for (var i = 1; i < (this.lampCount + 1); i++) {
+    this.api.setLightState(i, this.lightState.create().on().white(500, 100))
+       .then(this.displayResult)
+       .fail(this.displayError)
+       .done();
+  }
+}
+
+lamps.prototype.midcoldwhite = function(state) {
+  for (var i = 1; i < (this.lampCount + 1); i++) {
+    this.api.setLightState(i, this.lightState.create().on().white(500, 50))
+       .then(this.displayResult)
+       .fail(this.displayError)
+       .done();
+  }
+}
+
+lamps.prototype.lowcoldwhite = function(state) {
+  for (var i = 1; i < (this.lampCount + 1); i++) {
+    this.api.setLightState(i, this.lightState.create().on().white(500, 10))
+       .then(this.displayResult)
+       .fail(this.displayError)
+       .done();
+  }
+}
+
 module.exports = exports = lamps;
