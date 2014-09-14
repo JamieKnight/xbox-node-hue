@@ -1,6 +1,7 @@
 var lamps       = new (require('./modules/lamps'));
 var server      = new (require('./modules/server'));
-var joystick    = new (require('joystick'))(0, 3500, 350);
+
+var mode = process.argv[2];
 
 // map joystick events to buttons names
 var type = {
@@ -89,5 +90,9 @@ var joystickAction = function(event) {
   }
 }
 
-joystick.on('button', joystickAction);
-joystick.on('axis', joystickAction);
+//only bind joystick when not in server dev mode
+if (mode !== 'server') {
+  var joystick    = new (require('joystick'))(0, 3500, 350);
+  joystick.on('button', joystickAction);
+  joystick.on('axis', joystickAction);
+}
