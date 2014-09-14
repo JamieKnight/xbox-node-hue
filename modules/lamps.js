@@ -180,6 +180,7 @@ lamps.prototype.timer = function(){
   
   var action = this.setAllLampsState;
   setTimeout(function(){  action('off')}, 500)
+  this.alertCurrent();
   
 } 
 
