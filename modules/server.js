@@ -28,6 +28,7 @@ var Server = function(){
         
       
         console.log(decodedBody);
+        console.log(state);
         
         res.writeHead(200, "OK", {'Content-Type': 'text/html'});
         res.write(form)
