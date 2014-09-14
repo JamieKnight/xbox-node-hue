@@ -123,4 +123,13 @@ lamps.prototype.lowwhite = function(state) {
        .done();
   }
 }
+
+lamps.prototype.midwhite = function(state) {
+  for (var i = 1; i < (this.lampCount + 1); i++) {
+    this.api.setLightState(i, this.lightState.create().on().xy(0.4595,0.4105).brightness(50))
+       .then(this.displayResult)
+       .fail(this.displayError)
+       .done();
+  }
+}
 module.exports = exports = lamps;
