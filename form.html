@@ -1,70 +1,236 @@
 <html>
   <head>
     <title>Config</title>
+  
     <style>
-      body { font-family: sans-serif; }
+      @import url(http://fonts.googleapis.com/css?family=Open+Sans:400,300,600);
+      
+      body {
+        font-family: "Open Sans", sans-serif;
+        width: 80%;
+        max-width: 600px;
+        margin: 2em auto;
+        colour: rgba(60, 64, 67, 0.8);
+        
+      }
+      
+      header {
+        text-align: center;
+      }
+      
+      fieldset {
+        border: none;
+      }
+      
+      form {
+        
+        border: 1px solid #edece4;
+        padding: 0.6125em;
+        margin-bottom: 0;
+        border-bottom-width: 0;
+        
+      }
+      
+      form:first-child {
+        
+        border-top-left-radius: 0.6em;
+        border-top-right-radius: 0.6em;
+        
+      }
+      
+      form:last-child {
+        
+        border-bottom-left-radius: 0.6em;
+        border-bottom-right-radius: 0.6em;
+        border-bottom-width: 1px;
+        
+      }
+      
+      .button {
+
+        display: inline-block;
+        border-radius: 50%;
+        height: 1.5em;
+        min-width: 1.5em;
+        text-align: center;
+        color: #FFF;
+        background: #666;
+        vertical-align: middle;
+      }
+      
+      .button-a {
+        background: #349f23;
+      }
+      
+      .button-b {
+        background: #9f2623
+      }
+      
+      .button-x {
+        background: #23279e;
+      }
+      
+      .button-y {
+        background: #989f23;
+      }
+      
+      .collection {
+        margin-bottom: 2em;
+      }
+      
+      .pill {
+        display: inline-block;
+        border-radius: 5px;
+        text-align: center;
+        color: #FFF;
+        background: #666;
+        padding: 0.2em;
+        border: 4px solid #000;
+        border-width: 0;
+      }
+      
+      .pill-up {
+        border-top-width: 4px;
+      }
+      
+      .pill-down {
+        border-bottom-width: 4px;
+      }
+      
+      .pill-left {
+        border-left-width: 4px;
+      }
+      
+      .pill-right {
+        border-right-width: 4px;
+      }
+      
+      .hide {
+        position: absolute;
+        top: -999px;
+      }
+      
+      
     </style>
   </head>
 <body>
-  <form method="post">
-    <fieldset>
-      <input type="hidden" name="button" value="a:press" />
-      <input type="hidden" name="type" value="color" />
-       Pressing A will set the selected light color too 
-      <select name="value">
-        <option value="green" selected>Green</option>
-        <option value="blue">Blue</option>
-        <option value="red">Red</option>
-        <option value="white">White</option>
-        <option value="off">Off</option>
-      </select>
-      <input type="submit" value="save">
-    </fieldset>
-  </form>
-  <form method="post">
-    <fieldset>
-      <input type="hidden" name="button" value="b:press" />
-      <input type="hidden" name="type" value="color" />
-      Pressing B will set the selected light color too 
-      <select name="value">
-        <option value="green">Green</option>
-        <option value="blue">Blue</option>
-        <option value="red" selected>Red</option>
-        <option value="white">White</option>
-        <option value="off">Off</option>
-      </select>
-      <input type="submit" value="save">
-    </fieldset>
-  </form>
-  <form method="post">
-    <fieldset>
-      <input type="hidden" name="button" value="x:press" />
-      <input type="hidden" name="type" value="color" />
-      Pressing X will set the selected light color too 
-      <select name="value">
-        <option value="green">Green</option>
-        <option value="blue" selected>Blue</option>
-        <option value="red">Red</option>
-        <option value="white">White</option>
-        <option value="off">Off</option>
-      </select>
-      <input type="submit" value="save">
-    </fieldset>
-  </form>
+  <header>
+  <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" version="1.1" id="Layer_1" x="0px" y="0px" width="50%" height="50%" viewBox="0 0 100 100" enable-background="new 0 0 100 100" xml:space="preserve">
+<path d="M94.415,64c-1-27.5-6.084-34.5-6.084-34.5c-1.5-5.333-10.832-12-19.5-6.667c-8.666,5.333-18.164,4.541-18.164,4.541  l-2.332-0.042c0,0-8.5,0.834-17.167-4.5s-18,1.333-19.5,6.667c0,0-5.083,7-6.083,34.5s6.25,23,17.75,11.75s26-9.75,26-9.75h1.33  c0,0,14.5-1.5,26,9.75S95.415,91.5,94.415,64z M23.21,42.25c-3.521,0-6.375-2.854-6.375-6.375S19.689,29.5,23.21,29.5  s6.375,2.854,6.375,6.375S26.731,42.25,23.21,42.25z M40.919,55.561h-2.547v2.459c0,1.609-1.212,1.838-2.708,1.838  c-1.496,0-2.708-0.229-2.708-1.838v-2.459h-2.548c-1.637,0-1.869-1.213-1.869-2.709s0.232-2.708,1.869-2.708h2.548v-2.459  c0-1.607,1.212-1.837,2.708-1.837c1.496,0,2.708,0.23,2.708,1.837v2.459h2.547c1.637,0,1.869,1.211,1.869,2.708  S42.556,55.561,40.919,55.561z M49.335,42.323c-2.646,0-4.792-2.145-4.792-4.792c0-2.646,2.145-4.792,4.792-4.792  s4.792,2.145,4.792,4.792C54.127,40.178,51.981,42.323,49.335,42.323z M62.97,59.527c-3.521,0-6.375-2.854-6.375-6.375  c0-3.521,2.854-6.375,6.375-6.375s6.375,2.854,6.375,6.375C69.345,56.674,66.491,59.527,62.97,59.527z M69.345,38.812  c-1.415,0-2.562-1.147-2.562-2.562c0-1.416,1.147-2.562,2.562-2.562s2.562,1.147,2.562,2.562  C71.907,37.665,70.76,38.812,69.345,38.812z M76.755,46.312c-1.415,0-2.562-1.147-2.562-2.562c0-1.416,1.147-2.562,2.562-2.562  s2.562,1.147,2.562,2.562C79.317,45.165,78.17,46.312,76.755,46.312z M76.755,31.812c-1.415,0-2.562-1.147-2.562-2.562  c0-1.416,1.147-2.562,2.562-2.562s2.562,1.147,2.562,2.562C79.317,30.665,78.17,31.812,76.755,31.812z M83.835,38.812  c-1.415,0-2.562-1.147-2.562-2.562c0-1.416,1.147-2.562,2.562-2.562s2.562,1.147,2.562,2.562  C86.397,37.665,85.25,38.812,83.835,38.812z"/>
+</svg>
+  <h1>Configure Your Controller</h1>
+  </header>
+
+  <div class="collection">
+    <form method="post">
+      <fieldset>
+        <input type="hidden" name="button" value="a:press" />
+        <input type="hidden" name="type" value="colour" />
+        <label for="green">Pressing <span class="button button-a">A</span> will set the selected light colour too</label> 
+        <select name="value" id="green">
+          <option value="green" selected>Green</option>
+          <option value="blue">Blue</option>
+          <option value="red">Red</option>
+          <option value="white">White</option>
+          <option value="off">Off</option>
+        </select>
+        <label for="green-save" class="hide">green button settings</label>
+        <input type="submit" value="Save" id="green-save">
+      </fieldset>
+    </form>
   
-  <form method="post">
-    <fieldset>
-      <input type="hidden" name="button" value="y:press" />
-      <input type="hidden" name="type" value="color" />
-      Pressing Y will set the selected light color too 
-      <select name="value">
-        <option value="green">Green</option>
-        <option value="blue">Blue</option>
-        <option value="red">Red</option>
-        <option value="white">White</option>
-        <option value="off" selected>Off</option>
-      </select>
-      <input type="submit" value="save">
-    </fieldset>
-  </form>
+    <form method="post">
+      <fieldset>
+        <input type="hidden" name="button" value="b:press" />
+        <input type="hidden" name="type" value="colour" />
+        <label for="red">Pressing <span class="button button-b">B</span> will set the selected light colour too</label> 
+        <select name="value" id="red">
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="red" selected>Red</option>
+          <option value="white">White</option>
+          <option value="off">Off</option>
+        </select>
+        <label for="red-save" class="hide">red button settings</label>
+        <input type="submit" value="Save" id="red-save">
+      </fieldset>
+    </form>
+    
+    <form method="post">
+      <fieldset>
+        <input type="hidden" name="button" value="x:press" />
+        <input type="hidden" name="type" value="colour" />
+        <label for="blue">Pressing <span class="button button-x">X</span> will set the selected light colour too </label>
+        <select name="value" id="blue">
+          <option value="green">Green</option>
+          <option value="blue" selected>Blue</option>
+          <option value="red">Red</option>
+          <option value="white">White</option>
+          <option value="off">Off</option>
+        </select>
+        <label for="blue-save" class="hide">blue button settings</label>
+        <input type="submit" value="Save" id="blue-save">
+      </fieldset>
+    </form>
+   
+    <form method="post">
+      <fieldset>
+        <input type="hidden" name="button" value="y:press" />
+        <input type="hidden" name="type" value="colour" />
+        <label for="yellow">Pressing <span class="button button-y">Y</span>  will set the selected light colour too </label>
+        <select name="value" id="yellow">
+          <option value="green">Green</option>
+          <option value="blue">Blue</option>
+          <option value="red">Red</option>
+          <option value="white">White</option>
+          <option value="off" selected>Off</option>
+        </select>
+        <label for="yellow-save" class="hide">yellow button settings</label>
+        <input type="submit" value="Save" id="yellow-save">
+      </fieldset>
+    </form>
+  </div>
+  
+    
+  <div class="collection">
+    <form method="post">
+      <fieldset>
+        <input type="hidden" name="group" value="up:press" />
+        <input type="hidden" name="type" value="colour" />
+        <label for="up">Pressing <span class="pill pill-up">UP</span> will set all the lights too </label>
+        <select name="value" id="up">
+          <option value="highwhite" selected>Warm white, 100% brightness</option>
+          <option value="midwarmwhite">Warm white 50% Brightness</option>
+          <option value="lowwhite">Warm white, 10% brightness</option>
+          <option value="highcoldwhite">Cold white, 100% brightness</option>
+          <option value="midcoldwhite">Cold white, 50% brightness</option>
+          <option value="lowcoldwhite">Cold white, 10% brightness</option>
+          <option value="off">Off</option>
+        </select>
+        <label for="up-save" class="hide">Up button settings</label>
+        <input type="submit" value="Save" id="up-save">
+      </fieldset>
+    </form>
+    
+    <form method="post">
+      <fieldset>
+        <input type="hidden" name="group" value="down:press" />
+        <input type="hidden" name="type" value="colour" />
+        <label for="down">Pressing <span class="pill pill-down">DOWN</span> will set all the lights too </label>
+        <select name="value" id="down">
+          <option value="highwhite" >Warm white, 100% brightness</option>
+          <option value="midwarmwhite">Warm white 50% Brightness</option>
+          <option value="lowwhite" selected>Warm white, 10% brightness</option>
+          <option value="highcoldwhite">Cold white, 100% brightness</option>
+          <option value="midcoldwhite">Cold white, 50% brightness</option>
+          <option value="lowcoldwhite">Cold white, 10% brightness</option>
+          <option value="off">Off</option>
+        </select>
+        <label for="down-save" class="hide">down button settings</label>
+        <input type="submit" value="Save" id="down-save">
+      </fieldset>
+    </form>
+
+  </div>
+  
 </body>
