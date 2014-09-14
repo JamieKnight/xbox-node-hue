@@ -135,7 +135,7 @@ lamps.prototype.midwhite = function(state) {
 
 lamps.prototype.highcoldwhite = function(state) {
   for (var i = 1; i < (this.lampCount + 1); i++) {
-    this.api.setLightState(i, this.lightState.create().on().white(500, 100))
+    this.api.setLightState(i, this.lightState.create().on().white(0, 100))
        .then(this.displayResult)
        .fail(this.displayError)
        .done();
@@ -144,7 +144,7 @@ lamps.prototype.highcoldwhite = function(state) {
 
 lamps.prototype.midcoldwhite = function(state) {
   for (var i = 1; i < (this.lampCount + 1); i++) {
-    this.api.setLightState(i, this.lightState.create().on().white(500, 50))
+    this.api.setLightState(i, this.lightState.create().on().white(0, 50))
        .then(this.displayResult)
        .fail(this.displayError)
        .done();
@@ -153,7 +153,7 @@ lamps.prototype.midcoldwhite = function(state) {
 
 lamps.prototype.lowcoldwhite = function(state) {
   for (var i = 1; i < (this.lampCount + 1); i++) {
-    this.api.setLightState(i, this.lightState.create().on().white(500, 10))
+    this.api.setLightState(i, this.lightState.create().on().white(0, 10))
        .then(this.displayResult)
        .fail(this.displayError)
        .done();
