@@ -159,5 +159,8 @@ lamps.prototype.lowcoldwhite = function(state) {
        .done();
   }
 }
+lamps.prototype.off = function(){
+  this.setAllLampsState('off');
+} 
 
 module.exports = exports = lamps;
