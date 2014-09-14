@@ -178,8 +178,7 @@ lamps.prototype.pinkish = function(){
 
 lamps.prototype.timer = function(){
   
-  var action = this.setAllLampsState;
-  setTimeout(function(){  action('off')}, 500)
+  setTimeout(this.off.bind(this), 500)
   this.alertCurrent();
   
 } 
