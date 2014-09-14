@@ -23,10 +23,11 @@ var Server = function(){
       // parse the received body data
       req.on('end', function() {  
         var decodedBody = querystring.parse(fullBody);
-        state[decodedBody.button]['value'] = decodedBody.value;
-        state[decodedBody.button]['type'] = decodedBody.type;
+        //state[decodedBody.button]['value'] = decodedBody.value;
+        //state[decodedBody.button]['type'] = decodedBody.type;
         
-        console.log(state);
+      
+        console.log(decodedBody);
         
         res.writeHead(200, "OK", {'Content-Type': 'text/html'});
         res.write(form)
