@@ -9,7 +9,17 @@ All confgured via a Web UI run across the LAN from the Pi.
 
 ## Getting Started
 
+_*Note:* This app is only tested running in Raspbian on the Raspberry Pi. Should work on other linux's wont work on Windows or Mac OS X_
 
-_*Note:* This app is only testing running in Raspbian on the Raspberry Pi._
+1. Plug in Xbox Controller to any USB port 
+2. Download & Install Xbox Driver `sudo apt-get install xboxdrv`
+3. Download the [latest release](https://github.com/JamieKnight/xbox-node-hue/releases)
+4. Unzip into local directory and change into that director
+5. Modfy `/module/lamps.js` with the details for you hue bride account (follow the setup guide at http://www.developers.meethue.com/documentation/getting-started)
+6. Run `npm install`
+7. Run `xboxdrv --silent &` to run driver and place into background.
+8. Run `node app.js`
+9. Press buttons on your controller, see colors change.
+10. Marvel in awe.
 
 
