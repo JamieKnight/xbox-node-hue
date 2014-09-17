@@ -3,8 +3,15 @@ var server      = new (require('./modules/server'));
 
 var mode = process.argv[2];
 
+/***
+ * How this works:
+ * 1: Joystick events, are mapped to button name:action pairs (eg: a:press)
+ * 2: name:action pairs, are mapped to lamp events (type and value)
+ * 3: lamp events determine which instructions are sent to the lamps module
+***/
+
 // map joystick events to buttons names
-var type = {
+var events = {
   button: {
     0: { 1: "a:press", 0: "a:up" },
     1: { 1: "b:press", 0: "b:up" },
@@ -41,11 +48,11 @@ server.state = {
 
 var eventIsMapped = function(event){
   if (!event.init 
-       && type[event.type] 
-       && type[event.type][event.number] 
-       && type[event.type][event.number][event.value]
+       && events[event.type] 
+       && events[event.type][event.number] 
+       && events[event.type][event.number][event.value]
   ) {
-    var eventName = type[event.type][event.number][event.value];
+    var eventName = events[event.type][event.number][event.value];
     return server.state[eventName];
   } else {
     return false;
