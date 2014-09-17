@@ -26,7 +26,7 @@ lamps.prototype.displayResult = function(result) {
 };
 
 lamps.prototype.displayError = function(err) {
-    if (!result) { console.error(err) };
+    if (!err) { console.error(err) };
 };
 
 lamps.prototype.alertCurrent = function() {
