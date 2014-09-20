@@ -1,7 +1,49 @@
 var lamps       = new (require('./modules/lamps'));
 var server      = new (require('./modules/server'));
+var sqlite3     = require("sqlite3").verbose();
+var fs          = require("fs");
 
 var mode = process.argv[2];
+
+//connect too, or create a database for logs.
+var file = "logs.db";
+var exists = fs.existsSync(file);
+  
+if(!exists) {
+  console.log("Creating DB file.");
+  fs.openSync(file, "w");
+}
+  
+var db = new sqlite3.Database(file);
+
+db.serialize(function() {
+  if(!exists) {
+    console.log('creating tables');
+    
+    var actions = 'CREATE TABLE Actions (id INTEGER PRIMARY KEY, created TIMESTAMP DEFAULT CURRENT_TIMESTAMP, action TEXT NOT NULL);';
+    var errors = 'CREATE TABLE Errors (id INTEGER PRIMARY KEY, created TIMESTAMP DEFAULT CURRENT_TIMESTAMP, message TEXT NOT NULL);';
+  
+    db.run(actions);
+    db.run(errors);  
+  }
+  
+  
+});
+
+function log(action, message) {
+  var stmt = db.prepare("INSERT INTO Actions (action, message) VALUES (?, ?)");
+  stmt.run(action, "did stuff");
+  stmt.finalize();
+}
+
+function logError(message) {
+  var message = message || "unknown error";
+  
+  var stmt = db.prepare("INSERT INTO Errors (message) VALUES (?)");
+  stmt.run(message);
+  stmt.finalize();
+}
+
 
 /***
  * How this works:

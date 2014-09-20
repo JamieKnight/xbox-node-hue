@@ -1,5 +1,46 @@
 var hue = require("node-hue-api");
+var sqlite3     = require("sqlite3").verbose();
+var fs          = require("fs");
 
+var file = "logs.db";
+var exists = fs.existsSync(file);
+
+  if(!exists) {
+  console.log("Creating DB file.");
+  fs.openSync(file, "w");
+}
+  
+var db = new sqlite3.Database(file);
+
+db.serialize(function() {
+  if(!exists) {
+    console.log('creating tables');
+    
+    var actions = 'CREATE TABLE Actions (id INTEGER PRIMARY KEY, created TIMESTAMP DEFAULT CURRENT_TIMESTAMP, action TEXT NOT NULL);';
+    var errors = 'CREATE TABLE Errors (id INTEGER PRIMARY KEY, created TIMESTAMP DEFAULT CURRENT_TIMESTAMP, message TEXT NOT NULL);';
+  
+    db.run(actions);
+    db.run(errors);  
+  }
+  
+});
+
+function log(action, message) {
+  var action = action || "changelightstate";
+  var message = message || "did stuff";
+  
+  var stmt = db.prepare("INSERT INTO Actions (action, message) VALUES (?, ?)");
+  stmt.run(action, message);
+  stmt.finalize();
+}
+
+function logError(message) {
+  var message = message || "unknown error";
+  
+  var stmt = db.prepare("INSERT INTO Errors (message) VALUES (?)");
+  stmt.run(message);
+  stmt.finalize();
+}
 /**
  * Creates and interface for setting up lamps individually and in bulk.
  * 
@@ -23,10 +64,12 @@ var lamps = function(host, username){
 // Helpers
 lamps.prototype.displayResult = function(result) {
     if (!result) { console.log(result) };
+    log();
 };
 
 lamps.prototype.displayError = function(err) {
     if (!err) { console.error(err) };
+    logError();
 };
 
 lamps.prototype.alertCurrent = function() {
