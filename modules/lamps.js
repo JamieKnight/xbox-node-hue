@@ -164,12 +164,12 @@ lamps.prototype.off = function(){
 } 
 
 lamps.prototype.pinkish = function(){
-  this.api.setLightState(2, this.lightState.create().on().xy(0.2893, 0.156).brightness(10))
+  this.api.setLightState(1, this.lightState.create().on().xy(0.2893, 0.156).brightness(10))
        .then(this.displayResult)
        .fail(this.displayError)
        .done();
  
-  this.api.setLightState(1, this.lightState.create().on().xy(0.5218,0.3272).brightness(100))
+  this.api.setLightState(2, this.lightState.create().on().xy(0.5218,0.3272).brightness(100))
        .then(this.displayResult)
        .fail(this.displayError)
        .done();
